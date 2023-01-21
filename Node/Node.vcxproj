@@ -187,6 +187,7 @@
     <ClInclude Include="Client\Manager\Event\Event.h" />
     <ClInclude Include="Client\Manager\Hook\Hook.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\Entity\HookEntity.h" />
+    <ClInclude Include="Client\Manager\Hook\Hooks\GameMode\HookGameMode.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\Key\HookKey.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\Network\HookNetwork.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\RenderContext\HookRenderCtx.h" />
