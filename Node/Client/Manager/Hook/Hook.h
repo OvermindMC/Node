@@ -31,14 +31,14 @@ public:
 		this->name = name;
 		this->manager = mgr;
 		this->callback = cb;
-		this->sig = (__int64*)VTable[vTableIndex];
+		this->sig = (__int64*)sig;
 
-		if (MH_CreateHook((void*)sig, &detourCallback, reinterpret_cast<LPVOID*>(&_Func)) != MH_OK) {
+		if (MH_CreateHook((void*)VTable[vTableIndex], &detourCallback, reinterpret_cast<LPVOID*>(&_Func)) != MH_OK) {
 			Utils::debugOutput("Failed to initialize " + std::string(name) + " hook!");
 			return;
 		};
 
-		MH_EnableHook((void*)sig);
+		MH_EnableHook((void*)VTable[vTableIndex]);
 		this->manager->hooks.push_back((__int64*)this);
 
 	};
