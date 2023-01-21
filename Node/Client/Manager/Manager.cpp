@@ -5,6 +5,7 @@
 /* Module Includes */
 
 #include "Category/Module/Modules/Render/TabGui.h"
+#include "Category/Module/Modules/Combat/Killaura.h"
 #include "Category/Module/Modules/Misc/Uninject.h"
 #include "Category/Module/Modules/Misc/TestMod.h"
 
@@ -35,6 +36,7 @@ Manager::Manager(Client* c) {
 	};
 
 	new TabGui(this);
+	new Killaura(this);
 	new Uninject(this);
 	new TestMod(this);
 
