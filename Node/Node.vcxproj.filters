@@ -206,5 +206,8 @@
     <ClInclude Include="Client\Manager\Category\Module\Modules\Combat\Killaura.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Client\Manager\Hook\Hooks\GameMode\HookGameMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
