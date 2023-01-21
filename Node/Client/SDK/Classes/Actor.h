@@ -357,6 +357,8 @@ public:
 	virtual auto openContainerComponent(class Player*) -> void;
 public:
 	virtual auto swing(void) -> void;
+public:
+	virtual auto useItem(class ItemStackBase*, enum ItemUseMethod, bool) -> void;
 };
 
 enum ActorType {
