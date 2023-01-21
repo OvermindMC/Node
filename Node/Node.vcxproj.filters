@@ -203,5 +203,8 @@
     <ClInclude Include="Client\Client.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Combat\Killaura.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
