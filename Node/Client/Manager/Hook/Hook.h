@@ -21,12 +21,25 @@ public:
 public:
 	const char* name;
 public:
-	Hook(Manager* mgr, const char* name, uintptr_t sig, size_t vTableIndex, std::function<T(TArgs...)> cb) {
+	Hook(Manager* mgr, const char* name, uintptr_t vtable, size_t vTableIndex, std::function<T(TArgs...)> cb) {
 		
-		auto offset = *(int*)(sig + 3);
-		auto VTable = (uintptr_t**)(sig + offset + 7);
+		auto offset = *(int*)(vtable + 3);
+		auto VTable = (uintptr_t**)(vtable + offset + 7);
 
-		*this = Hook<T, TArgs...>(mgr, name, (uintptr_t)VTable[vTableIndex], cb);
+		this->manager = mgr;
+
+		this->name = name;
+		this->manager = mgr;
+		this->callback = cb;
+		this->sig = (__int64*)VTable[vTableIndex];
+
+		if (MH_CreateHook((void*)sig, &detourCallback, reinterpret_cast<LPVOID*>(&_Func)) != MH_OK) {
+			Utils::debugOutput("Failed to initialize " + std::string(name) + " hook!");
+			return;
+		};
+
+		MH_EnableHook((void*)sig);
+		this->manager->hooks.push_back((__int64*)this);
 
 	};
 public:
