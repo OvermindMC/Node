@@ -359,6 +359,59 @@ public:
 	virtual auto swing(void) -> void;
 public:
 	virtual auto useItem(class ItemStackBase*, enum ItemUseMethod, bool) -> void;
+public:
+	virtual auto hasOutputSignal(unsigned __int8) -> bool;
+	virtual auto getOutputSignal(void) -> __int64;
+public:
+	virtual auto getDebugText(std::vector<std::string>&) -> void;
+public:
+	virtual auto getMapDecorationRotation(void) -> float;
+	virtual auto getPassengerYRotation(Actor*) -> float;
+public:
+	virtual auto isWorldBuilder(void) -> bool;
+	virtual auto isCreative(void) -> bool;
+	virtual auto isAdventure(void) -> bool;
+	virtual auto isSurvival(void) -> bool;
+	virtual auto isSpectator(void) -> bool;
+	virtual auto isAttackableGamemode(void) -> bool;
+public:
+	virtual auto add(class ItemStack*) -> bool;
+	virtual auto drop(class ItemStack*, bool) -> bool;
+public:
+	virtual auto getInteraction(class Player*, class ActorInteraction*, Vec3<float>*) -> bool;
+public:
+	virtual auto canDestroyBlock(Block*) -> bool;
+	virtual auto setAuxValue(int) -> void;
+public:
+	virtual auto setSize(float, float) -> void;
+public:
+	virtual auto onOrphan(void) -> void;
+	virtual auto wobble(void) -> void;
+	virtual auto wasHurt(void) -> bool;
+public:
+	virtual auto startSpinAttack(void) -> void;
+	virtual auto stopSpinAttack(void) -> void;
+	virtual auto setDamageNearbyMobs(bool) -> void;
+public:
+	virtual auto renderDebugServerState(class Options*) -> void;
+public:
+	virtual auto reloadLootTable(void) -> void;
+	virtual auto reloadLootTable(class EquipmentTableDefinition*) -> void;
+public:
+	virtual auto getDeletionDelayTimeSeconds(void) -> __int64;
+public:
+	virtual auto kill(void) -> void;
+	virtual auto die(class ActorDamageSource*) -> void;
+public:
+	virtual auto shouldDropDeathLoot(void) -> bool;
+	virtual auto shouldTick(void) -> bool;
+public:
+	virtual auto applySnapshot(class EntityContext*, class EntityContext*) -> void;
+	virtual auto getNextStep(float) -> float;
+public:
+	virtual auto getLootTable(void) -> class LootTable*;
+public:
+	virtual auto interpolatorTick(void) -> void;
 };
 
 enum ActorType {
