@@ -157,6 +157,7 @@
     <ClCompile Include="Client\Mem\Mem.cpp" />
     <ClCompile Include="Client\SDK\Classes\Actor.cpp" />
     <ClCompile Include="Client\SDK\Classes\Level.cpp" />
+    <ClCompile Include="Client\SDK\Classes\Packet.cpp" />
     <ClCompile Include="Client\SDK\Minecraft.cpp" />
     <ClCompile Include="Client\Utils\RenderUtils.cpp" />
     <ClCompile Include="Client\Utils\Utils.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Client\Manager\Category\Module\Modules\Combat\Killaura.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Misc\TestMod.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Misc\Uninject.h" />
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Player\FreeLook.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Render\TabGui.h" />
     <ClInclude Include="Client\Manager\Event\Event.h" />
     <ClInclude Include="Client\Manager\Hook\Hook.h" />

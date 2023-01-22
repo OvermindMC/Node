@@ -75,6 +75,9 @@
     <ClCompile Include="Client\Client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Client\SDK\Classes\Packet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -207,6 +210,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Client\Manager\Hook\Hooks\GameMode\HookGameMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Player\FreeLook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

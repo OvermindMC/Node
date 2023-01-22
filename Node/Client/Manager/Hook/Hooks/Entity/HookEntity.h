@@ -17,5 +17,28 @@ public:
 			};
 			
 		}
-	) {};
+	) {
+		new Hook<void, Actor*, void*>(this->manager, "ActorInterpolatorTick", (uintptr_t)this->sig, 256,
+		[&](Actor* entity, void* p2){
+			
+			auto _this = this->manager->getHook<void, Actor*, void*>("ActorInterpolatorTick");
+			
+			if(_this) {
+
+				for (auto [type, category] : this->manager->categories) {
+
+					for (auto mod : category->modules) {
+
+						if (mod->isEnabled)
+							mod->callEvent<InterpolatorTickEvent>(InterpolatorTickEvent{ entity });
+
+					};
+				};
+
+				_this->_Func(entity, p2);
+
+			};
+			
+		});
+	};
 };

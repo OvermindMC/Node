@@ -31,15 +31,19 @@ public:
 		this->name = name;
 		this->manager = mgr;
 		this->callback = cb;
-		this->sig = (__int64*)sig;
+		this->sig = (__int64*)vtable;
 
 		if (MH_CreateHook((void*)VTable[vTableIndex], &detourCallback, reinterpret_cast<LPVOID*>(&_Func)) != MH_OK) {
-			Utils::debugOutput("Failed to initialize " + std::string(name) + " hook!");
+			Utils::debugOutput("Failed to initialize [ " + std::string(name) + " ] hook!");
 			return;
 		};
 
+		std::ostringstream o;
+		o << std::hex << VTable[vTableIndex];
+
 		MH_EnableHook((void*)VTable[vTableIndex]);
 		this->manager->hooks.push_back((__int64*)this);
+		Utils::debugOutput("Successfully initialized [ " + std::string(name) + " ] hook { " + o.str() + " }");
 
 	};
 public:
@@ -52,8 +56,11 @@ public:
 		this->callback = cb;
 		this->sig = (__int64*)sig;
 
+		std::ostringstream o;
+		o << std::hex << sig;
+
 		if (MH_CreateHook((void*)sig, &detourCallback, reinterpret_cast<LPVOID*>(&_Func)) != MH_OK) {
-			Utils::debugOutput("Failed to initialize " + std::string(name) + " hook!");
+			Utils::debugOutput("Failed to initialize " + std::string(name) + " hook { " + o.str() + " }");
 			return;
 		};
 
