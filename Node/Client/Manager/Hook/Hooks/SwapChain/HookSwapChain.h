@@ -168,13 +168,13 @@ public:
 
 		};
 
-		auto sc_methodsTable = (uint150_t*)::calloc(150, sizeof(uint150_t));
+		auto sc_methodsTable = (uint64_t*)::calloc(150, sizeof(uint64_t));
 		
-		::memcpy(sc_methodsTable, *(uint150_t**)device, 44 * sizeof(uint150_t));
-		::memcpy(sc_methodsTable + 44, *(uint150_t**)commandQueue, 19 * sizeof(uint150_t));
-		::memcpy(sc_methodsTable + 44 + 19, *(uint150_t**)commandAllocator, 9 * sizeof(uint150_t));
-		::memcpy(sc_methodsTable + 44 + 19 + 9, *(uint150_t**)commandList, 60 * sizeof(uint150_t));
-		::memcpy(sc_methodsTable + 44 + 19 + 9 + 60, *(uint150_t**)swapChain, 18 * sizeof(uint150_t));
+		::memcpy(sc_methodsTable, *(uint64_t**)device, 44 * sizeof(uint64_t));
+		::memcpy(sc_methodsTable + 44, *(uint64_t**)commandQueue, 19 * sizeof(uint64_t));
+		::memcpy(sc_methodsTable + 44 + 19, *(uint64_t**)commandAllocator, 9 * sizeof(uint64_t));
+		::memcpy(sc_methodsTable + 44 + 19 + 9, *(uint64_t**)commandList, 60 * sizeof(uint64_t));
+		::memcpy(sc_methodsTable + 44 + 19 + 9 + 60, *(uint64_t**)swapChain, 18 * sizeof(uint64_t));
 
 		Utils::debugOutput("Successfully stored SwapChain VTable methods!");
 
