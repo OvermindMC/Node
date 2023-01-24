@@ -19,3 +19,26 @@ auto MC::getLocalPlayer(void) -> Player* {
 	return (getClientInstance() != nullptr ? getClientInstance()->getPlayer() : nullptr);
 
 };
+
+auto MC::gameIsFullScreen(void) -> bool {
+
+	auto instance = getClientInstance();
+	auto guidata = (instance != nullptr ? instance->getGuiData() : nullptr);
+
+	if (guidata == nullptr)
+		return false;
+
+	if (guidata->uiScale < 3.f)
+		return false;
+
+	auto window = (HWND)FindWindowA(nullptr, (LPCSTR)"Minecraft");
+	
+	DWORD windowProcessId;
+	GetWindowThreadProcessId(window, &windowProcessId);
+
+	WINDOWPLACEMENT placement;
+	GetWindowPlacement(window, &placement);
+
+	return placement.showCmd == 1;
+
+};
