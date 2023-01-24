@@ -3,6 +3,8 @@
 
 class TestMod : public Module {
 public:
+	bool setWindow = false;
+public:
 	TestMod(Manager* mgr) : Module(mgr->categories[CategoryType::MISC], "TestMod") {
 
 		registerEvent<ModuleEvent>([&](ModuleEvent* args) {
@@ -29,7 +31,12 @@ public:
 
 			auto io = args->io;
 
-			ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
+			if(!setWindow) {
+
+				ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
+				setWindow = true;
+
+			};
 			
 			if(ImGui::Begin("Test")) {
 
