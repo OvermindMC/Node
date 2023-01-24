@@ -3,6 +3,9 @@
 
 class HookSwapChain : public Hook<void> {
 public:
+	ID3D11Device* d3d11Device = nullptr;
+	ID3D12Device* d3d12Device = nullptr;
+public:
 	HookSwapChain(Manager* mgr) : Hook<void>(mgr) {
 
 		IDXGISwapChain* pSwapChain;
@@ -176,7 +179,7 @@ public:
 		::memcpy(sc_methodsTable + 44 + 19 + 9, *(uint64_t**)commandList, 60 * sizeof(uint64_t));
 		::memcpy(sc_methodsTable + 44 + 19 + 9 + 60, *(uint64_t**)swapChain, 18 * sizeof(uint64_t));
 
-		Utils::debugOutput("Successfully stored SwapChain VTable methods!");
+		//Utils::debugOutput("Successfully stored SwapChain VTable methods!");
 
 		device->Release();
 		device = NULL;
@@ -201,7 +204,20 @@ public:
 				
 				auto _this = this->manager->getHook<HRESULT, IDXGISwapChain3*, UINT, UINT>("SwapChainPresent");
 				
-				//Utils::debugOutput("!");
+				if(d3d11Device == nullptr && d3d12Device == nullptr) {
+
+					if (SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d11Device)))) {
+
+						Utils::debugOutput("SwapChain initializing for D3D11");
+
+					}
+					else if (SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d11Device)))) {
+
+						Utils::debugOutput("SwapChain initializing for D3D12");
+
+					};
+
+				};
 				
 				return _this->_Func(ppSwapChain, syncInterval, flags);
 				
