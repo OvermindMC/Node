@@ -25,5 +25,18 @@ public:
 
 		});
 
+		registerEvent<ImGuiEvent>([&](ImGuiEvent* args) {
+
+			auto io = args->io;
+			
+			if(ImGui::Begin("Test")) {
+
+
+				ImGui::End();
+
+			};
+
+		});
+
 	};
 };

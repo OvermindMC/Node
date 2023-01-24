@@ -43,6 +43,10 @@ struct RenderCtxEvent {
     class MinecraftUIRenderContext* ctx;
 };
 
+struct ImGuiEvent {
+    struct ImGuiIO& io;
+};
+
 struct PacketEvent {
     bool* cancel;
     class Packet* packet;

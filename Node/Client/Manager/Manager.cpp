@@ -19,10 +19,6 @@
 #include "Hook/Hooks/Entity/HookEntity.h"
 #include "Hook/Hooks/Key/HookKey.h"
 
-/* Other */
-
-#include "../ImGui/Fonts/ProductSans.h"
-
 /* Manager Constructor */
 
 Manager::Manager(Client* c) {

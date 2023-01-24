@@ -6,6 +6,8 @@ public:
 	ID3D11Device* d3d11Device = nullptr;
 	ID3D12Device* d3d12Device = nullptr;
 public:
+	bool contextInitialized = false;
+public:
 	HookSwapChain(Manager* mgr) : Hook<void>(mgr) {
 
 		IDXGISwapChain* pSwapChain;
@@ -204,6 +206,8 @@ public:
 				
 				auto _this = this->manager->getHook<HRESULT, IDXGISwapChain3*, UINT, UINT>("SwapChainPresent");
 				
+				auto window = (HWND)FindWindowA(nullptr, (LPCSTR)"Minecraft");
+				
 				if(d3d11Device == nullptr && d3d12Device == nullptr) {
 
 					if (SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d11Device)))) {
@@ -216,6 +220,58 @@ public:
 						Utils::debugOutput("SwapChain initializing for D3D12");
 
 					};
+
+				};
+
+				if (d3d11Device) {
+
+					if (!contextInitialized) {
+
+						ImGui::CreateContext();
+						auto& io = ImGui::GetIO();
+						io.Fonts->AddFontFromMemoryCompressedTTF(ProductSans_compressed_data, ProductSans_compressed_size, 16.f);
+
+						contextInitialized = true;
+
+					};
+
+					ID3D11DeviceContext* ppContext = nullptr;
+					d3d11Device->GetImmediateContext(&ppContext);
+
+					ID3D11Texture2D* pBackBuffer;
+					ppSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+
+					ID3D11RenderTargetView* mainRenderTargetView;
+					d3d11Device->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
+
+					pBackBuffer->Release();
+
+					ImGui_ImplWin32_Init(window);
+					ImGui_ImplDX11_Init(d3d11Device, ppContext);
+
+					ImGui_ImplDX11_NewFrame();
+					ImGui_ImplWin32_NewFrame();
+					ImGui::NewFrame();
+
+					for (auto [type, category] : this->manager->categories) {
+
+						for (auto mod : category->modules) {
+
+							if (mod->isEnabled)
+								mod->callEvent<ImGuiEvent>({ ImGui::GetIO() });
+
+						};
+
+					};
+
+					ImGui::EndFrame();
+					ImGui::Render();
+
+					ppContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
+					ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+					mainRenderTargetView->Release();
+					d3d11Device->Release();
 
 				};
 				
