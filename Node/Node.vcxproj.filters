@@ -212,5 +212,8 @@
     <ClInclude Include="Client\ImGui\Fonts\ProductSans.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Client\Manager\Hook\Hooks\Mouse\HookMouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
