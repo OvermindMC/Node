@@ -13,6 +13,7 @@
 /* Hooks */
 
 #include "Hook/Hooks/RenderContext/HookRenderCtx.h"
+#include "Hook/Hooks/SwapChain/HookSwapChain.h"
 #include "Hook/Hooks/GameMode/HookGameMode.h"
 #include "Hook/Hooks/Network/HookNetwork.h"
 #include "Hook/Hooks/Entity/HookEntity.h"
@@ -46,6 +47,7 @@ Manager::Manager(Client* c) {
 	MH_Initialize();
 
 	new HookRenderCtx(this);
+	new HookSwapChain(this);
 	new HookGameMode(this);
 	new HookNetwork(this);
 	new HookEntity(this);

@@ -68,4 +68,10 @@ public:
 		this->manager->hooks.push_back((__int64*)this);
 
 	};
+public:
+	Hook(Manager* mgr) {
+		
+		this->manager = mgr;
+
+	};
 };

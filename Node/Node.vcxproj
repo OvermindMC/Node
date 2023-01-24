@@ -193,6 +193,7 @@
     <ClInclude Include="Client\Manager\Hook\Hooks\Key\HookKey.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\Network\HookNetwork.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\RenderContext\HookRenderCtx.h" />
+    <ClInclude Include="Client\Manager\Hook\Hooks\SwapChain\HookSwapChain.h" />
     <ClInclude Include="Client\Manager\Manager.h" />
     <ClInclude Include="Client\Mem\Mem.h" />
     <ClInclude Include="Client\SDK\Classes\Actor.h" />
