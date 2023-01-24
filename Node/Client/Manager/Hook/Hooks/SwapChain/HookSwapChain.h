@@ -196,5 +196,16 @@ public:
 		::DestroyWindow(window);
 		::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
 
+		new Hook<HRESULT, IDXGISwapChain3*, UINT, UINT>(mgr, "SwapChainPresent", (uintptr_t)sc_methodsTable[140],
+			[&](IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flags){
+				
+				auto _this = this->manager->getHook<HRESULT, IDXGISwapChain3*, UINT, UINT>("SwapChainPresent");
+				
+				//Utils::debugOutput("!");
+				
+				return _this->_Func(ppSwapChain, syncInterval, flags);
+				
+		});
+
 	};
 };
