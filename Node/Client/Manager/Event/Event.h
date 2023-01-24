@@ -39,6 +39,13 @@ struct KeyEvent {
     bool* cancel;
 };
 
+struct MouseEvent {
+    Vec2<short> mousePos;
+    MouseAction action;
+    bool isDown;
+    bool* cancel;
+};
+
 struct RenderCtxEvent {
     class MinecraftUIRenderContext* ctx;
 };
