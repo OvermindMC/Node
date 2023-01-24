@@ -18,7 +18,7 @@ public:
 
 					std::ostringstream o;
 					o << std::hex << player;
-#
+
 					Utils::debugOutput("Player: " + o.str());
 
 				};
