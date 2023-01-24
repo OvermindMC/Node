@@ -17,6 +17,7 @@
 #include "Hook/Hooks/GameMode/HookGameMode.h"
 #include "Hook/Hooks/Network/HookNetwork.h"
 #include "Hook/Hooks/Entity/HookEntity.h"
+#include "Hook/Hooks/Mouse/HookMouse.h"
 #include "Hook/Hooks/Key/HookKey.h"
 
 /* Manager Constructor */
@@ -47,6 +48,7 @@ Manager::Manager(Client* c) {
 	new HookGameMode(this);
 	new HookNetwork(this);
 	new HookEntity(this);
+	new MouseHook(this);
 	new HookKey(this);
 
 	for (;;) {
