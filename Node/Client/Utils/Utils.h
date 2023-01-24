@@ -13,6 +13,8 @@
 #include <regex>
 #include <map>
 
+enum MouseAction { NONE = 0, LMB = 1, RMB = 2, WHEEL_CLICK = 3, WHEEL_SCROLL = 4 };
+
 class Utils {
 public:
 	static std::string debugPath;
