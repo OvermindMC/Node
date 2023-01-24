@@ -8,7 +8,6 @@
 #include <dwrite_1.h>
 #include <initguid.h>
 
-#include "../kiero/kiero.h"
 #include "../ImGui/imgui.h"
 #include "../ImGui/imgui_impl_win32.h"
 #include "../ImGui/imgui_impl_dx11.h"
