@@ -28,6 +28,8 @@ public:
 		registerEvent<ImGuiEvent>([&](ImGuiEvent* args) {
 
 			auto io = args->io;
+
+			ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
 			
 			if(ImGui::Begin("Test")) {
 
