@@ -253,6 +253,16 @@ public:
 					ImGui_ImplWin32_NewFrame();
 					ImGui::NewFrame();
 
+					if (MC::gameIsFullScreen()) {
+
+						/*ImGui::GetIO().MousePos.y += 30.f;
+						ImGui::GetIO().MousePosPrev.y += 30.f;*/
+
+						ImGui::GetOverlayDrawList()->AddCircleFilled(ImGui::GetIO().MousePos, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
+						ImGui::GetOverlayDrawList()->AddCircleFilled(ImGui::GetIO().MousePosPrev, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
+
+					};
+
 					for (auto [type, category] : this->manager->categories) {
 
 						for (auto mod : category->modules) {
