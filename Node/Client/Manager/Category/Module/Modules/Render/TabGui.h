@@ -102,7 +102,7 @@ public:
 
 					});
 
-					auto len = args->ctx->getTextLength(font, &modules.back()->name, fontSize, false);
+					auto len = args->ctx->getTextLength(font, &modules.front()->name, fontSize, false);
 					auto rect = Rect(categoryRect.z, ((categoryRect.y + 2.f) + (fontSize * 10.f)) + (currCategory * (fontSize * 10.f)), (categoryRect.z + 4.f) + len, ((categoryRect.y + 2.f) + (fontSize * 10.f)) + (currCategory * (fontSize * 10.f)) + (modules.size() * (fontSize * 10.f)) + 2.f);
 
 					args->ctx->fillRectangle(rect, Color(60.f, 70.f, 80.f, alpha - .2f));
