@@ -8,28 +8,38 @@ public:
 		[&](void* p1, MouseAction action, bool isDown, short p4, short p5, void* p6, void* p7, void* p8){
 			
 			auto _this = this->manager->getHook<void, void*, MouseAction, bool, short, short, void*, void*, void*>("MouseHook");
-			bool cancel = false;
 			
-			auto instance = MC::getClientInstance();
-			auto guidata = (instance != nullptr ? instance->getGuiData() : nullptr);
-			auto mousePos = Vec2<short>(p4 / guidata->uiScale, p5 / guidata->uiScale);
+			if(_this) {
 
-			if(action != MouseAction::NONE)
-				ImGui::GetIO().MouseDown[0] = isDown;
+				bool cancel = false;
 
-			for(auto [ type, category ] : this->manager->categories) {
+				auto instance = MC::getClientInstance();
+				auto guidata = (instance != nullptr ? instance->getGuiData() : nullptr);
 
-				for (auto mod : category->modules) {
+				if (guidata) {
 
-					if (mod->isEnabled)
-						mod->callEvent<MouseEvent>(MouseEvent{ mousePos, action, isDown, &cancel });
+					auto mousePos = Vec2<short>(p4 / guidata->uiScale, p5 / guidata->uiScale);
+
+					if (ImGui::GetCurrentContext() && action != MouseAction::NONE)
+						ImGui::GetIO().MouseDown[0] = isDown;
+
+					for (auto [type, category] : this->manager->categories) {
+
+						for (auto mod : category->modules) {
+
+							if (mod->isEnabled)
+								mod->callEvent<MouseEvent>(MouseEvent{ mousePos, action, isDown, &cancel });
+
+						};
+
+					};
 
 				};
 
-			};
+				if (!cancel)
+					_this->_Func(p1, action, isDown, p4, p5, p6, p7, p8);
 
-			if (!cancel)
-				_this->_Func(p1, action, isDown, p4, p5, p6, p7, p8);
+			};
 			
 		}
 	) {};
