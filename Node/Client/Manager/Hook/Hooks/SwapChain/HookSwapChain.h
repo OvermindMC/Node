@@ -6,6 +6,12 @@ public:
 	ID3D11Device* d3d11Device = nullptr;
 	ID3D12Device* d3d12Device = nullptr;
 public:
+	ID3D12DescriptorHeap* d3d12DescriptorHeapImGuiRender = nullptr;
+	ID3D12DescriptorHeap* d3d12DescriptorHeapBackBuffers = nullptr;
+	ID3D12GraphicsCommandList* d3d12CommandList = nullptr;
+	ID3D12CommandQueue* d3d12CommandQueue = nullptr;
+	ID3D12CommandAllocator* allocator = nullptr;
+public:
 	bool contextInitialized = false;
 public:
 	HookSwapChain(Manager* mgr) : Hook<void>(mgr) {
@@ -283,9 +289,30 @@ public:
 					mainRenderTargetView->Release();
 					d3d11Device->Release();
 
+				}
+				else if (d3d12Device) {
+
+					if (!contextInitialized) {
+
+						// WIP
+
+					};
+
 				};
 				
 				return _this->_Func(ppSwapChain, syncInterval, flags);
+				
+		});
+
+		new Hook<void, ID3D12CommandQueue*, UINT, ID3D12CommandList*>(this->manager, "SwapChainCommandQueue", (uintptr_t)sc_methodsTable[54],
+			[&](ID3D12CommandQueue* queue, UINT NumCommandLists, ID3D12CommandList* ppCommandLists){
+				
+				auto _this = this->manager->getHook<void, ID3D12CommandQueue*, UINT, ID3D12CommandList*>("SwapChainCommandQueue");
+				
+				if(!d3d12CommandQueue)
+					d3d12CommandQueue = queue;
+				
+				return _this->_Func(queue, NumCommandLists, ppCommandLists);
 				
 		});
 
