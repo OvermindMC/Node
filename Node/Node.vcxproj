@@ -179,6 +179,7 @@
     <ClInclude Include="Client\ImGui\imstb_truetype.h" />
     <ClInclude Include="Client\Manager\Category\Category.h" />
     <ClInclude Include="Client\Manager\Category\Module\Module.h" />
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Combat\Hitbox.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Combat\Killaura.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Misc\TestMod.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Misc\Uninject.h" />
