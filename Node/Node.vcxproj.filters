@@ -218,5 +218,8 @@
     <ClInclude Include="Client\Manager\Category\Module\Modules\Combat\Hitbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Player\AutoSprint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
