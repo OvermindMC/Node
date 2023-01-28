@@ -10,6 +10,7 @@
 #include "Category/Module/Modules/Combat/Hitbox.h"
 
 #include "Category/Module/Modules/Player/FreeLook.h"
+#include "Category/Module/Modules/Player/AutoSprint.h"
 
 #include "Category/Module/Modules/Misc/Uninject.h"
 #include "Category/Module/Modules/Misc/TestMod.h"
@@ -45,6 +46,7 @@ Manager::Manager(Client* c) {
 	new Hitbox(this);
 
 	new FreeLook(this);
+	new AutoSprint(this);
 	
 	new Uninject(this);
 	new TestMod(this);
