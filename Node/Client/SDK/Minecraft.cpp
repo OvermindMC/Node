@@ -20,6 +20,12 @@ auto MC::getLocalPlayer(void) -> Player* {
 
 };
 
+auto MC::getMoveInputHandler(void) -> MoveInputHandler* {
+
+	return (getClientInstance() != nullptr ? getClientInstance()->getMoveInputHandler() : nullptr);
+
+};
+
 auto MC::gameIsFullScreen(void) -> bool {
 
 	auto instance = getClientInstance();
