@@ -413,6 +413,47 @@ public:
 	virtual auto getLootTable(void) -> class LootTable*;
 public:
 	virtual auto interpolatorTick(void) -> void;
+public:
+	virtual auto onPush(class Player*) -> void;
+public:
+	virtual auto getLastDeathPos(void) -> std::optional<Vec3<int>>;
+	virtual auto getLastDeathDimension(void) -> std::optional<class AutomaticID<class Dimension, int>>;
+public:
+	virtual auto hasDiedBefore(void) -> bool;
+public:
+	virtual auto doWaterSplashEffect(void) -> void;
+public:
+	virtual auto _shouldProvideFeedbackOnHandContainerItemSet(enum HandSlot, class ItemStack*) -> bool;
+	virtual auto _shouldProvideFeedbackOnArmorSet(ArmorSlot, ItemStack*) -> void;
+public:
+	virtual auto updateEntitySpecificMolangVariables(class RenderParams*) -> void;
+public:
+	virtual auto shouldTryMakeStepSound(void) -> bool;
+	virtual auto canMakeStepSound(void) -> bool;
+public:
+	virtual auto _hurt(class ActorDamageSource*, float, bool, bool) -> bool;
+	virtual auto markHurt(void) -> void;
+public:
+	virtual auto _getAnimationComponent(std::shared_ptr<class AnimationComponent>&, class AnimationComponentGroupType) -> class AnimationComponent&;
+public:
+	virtual auto readAdditionalSaveData(class CompoundTag*, class DataLoadHelper*) -> void;
+	virtual auto addAdditionalSaveData(class CompoundTag*) -> void;
+public:
+	virtual auto _playStepSound(Vec3<int>*, class Block*) -> void;
+	virtual auto _playFlySound(Vec3<int>*, class Block*) -> void;
+	virtual auto _makeFlySound(void) -> void;
+public:
+	virtual auto checkInsideBlocks(float) -> void;
+	virtual auto pushOutOfBlocks(Vec3<float>*) -> void;
+public:
+	virtual auto spawnTrailBubbles(void) -> void;
+	virtual auto updateInsideBlock(void) -> void;
+public:
+	virtual auto _removePassenger(uint64_t, bool, bool, bool) -> void;
+public:
+	virtual auto _onSizeUpdated(void) -> void;
+public:
+	virtual auto _doAutoAttackOnTouch(Actor*) -> void;
 };
 
 enum ActorType {
