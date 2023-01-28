@@ -50,7 +50,7 @@ public:
 
 					text += std::string(" [" + std::to_string(entity->getHealth()) + "]");
 					auto len = ctx->getTextLength(font, &text, fontSize, false);
-					auto screenPos = args->ctx->gameToScreenPos(entity->getPos()->add(0.f, 1.f, 0.f));
+					auto screenPos = args->ctx->gameToScreenPos(entity->getPos()->add(0.f, 1.3f, 0.f));
 
 					if (screenPos.x <= 0 && screenPos.y <= 0)
 						return;
