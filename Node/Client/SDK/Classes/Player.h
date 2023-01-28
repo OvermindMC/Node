@@ -13,9 +13,9 @@ public:
 private:
 	virtual ~Player(void);
 public:
-	auto setSprinting(bool state) -> void {
-
-		return Utils::CallVFunc<284, void, bool>(this, state);
-
-	};
+	virtual auto knockback(class Actor*, int, float, float, float, float, float) -> void;
+public:
+	virtual auto spawnAnim(void) -> void;
+public:
+	virtual auto setSprinting(bool) -> void;
 };
