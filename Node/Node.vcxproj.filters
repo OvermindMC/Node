@@ -230,5 +230,8 @@
     <ClInclude Include="Client\SDK\Classes\LevelRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Render\Nametags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

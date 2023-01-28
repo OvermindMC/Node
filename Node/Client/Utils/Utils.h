@@ -30,6 +30,12 @@ public:
 public:
 	static auto reachOff(float*, float, float) -> void;
 public:
+	static auto sanitize(std::string text) -> std::string;
+public:
+	static auto toLower(std::string input) -> std::string;
+public:
+	static auto splitStringBy(std::string, std::string) -> std::vector<std::string>;
+public:
 	template <unsigned int IIdx, typename TRet, typename... TArgs>
 	static inline auto CallVFunc(void* thisptr, TArgs... argList) -> TRet {
 		using Fn = TRet(__thiscall*)(void*, decltype(argList)...);
