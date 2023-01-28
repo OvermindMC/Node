@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "GuiData.h"
 #include "MinecraftGame.h"
+#include "MoveInputHandler.h"
 #include "LoopbackPacketSender.h"
 
 class ClientInstance {
@@ -16,6 +17,10 @@ public:
 public:
 	auto getMcGame(void) -> MinecraftGame* {
 		return *(MinecraftGame**)((uintptr_t)(this) + 0xA8);
+	};
+public:
+	auto getMoveInputHandler(void) -> MoveInputHandler* {
+		return *(MoveInputHandler**)((uintptr_t)(this) + 0xF8);
 	};
 public:
 	auto getLpSender(void) -> LoopbackPacketSender* {
