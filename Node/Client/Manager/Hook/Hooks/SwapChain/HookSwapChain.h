@@ -221,8 +221,14 @@ public:
 				
 				auto _this = this->manager->getHook<HRESULT, IDXGISwapChain3*, UINT, UINT>("SwapChainPresent");
 
-				if(!MC::getClientInstance())
+				auto instance = MC::getClientInstance();
+				auto guidata = instance ? instance->getGuiData() : nullptr;
+				
+				if(!guidata)
 					return _this->_Func(ppSwapChain, syncInterval, flags);
+
+				if (ImGui::GetCurrentContext())
+					ImGui::GetIO().DisplaySize = ImVec2(guidata->screenResC.x, guidata->screenResC.y);
 				
 				auto window = (HWND)FindWindowA(nullptr, (LPCSTR)"Minecraft");
 				
@@ -246,8 +252,14 @@ public:
 					if (!contextInitialized) {
 
 						ImGui::CreateContext();
-						auto& io = ImGui::GetIO();
-						io.Fonts->AddFontFromMemoryCompressedTTF(ProductSans_compressed_data, ProductSans_compressed_size, 16.f);
+						ImGuiIO* io = &ImGui::GetIO();
+
+						auto size = sizeof(tahoma);
+
+						ImFontConfig font_cfg;
+						font_cfg.FontDataOwnedByAtlas = false;
+						io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 17.f, &font_cfg);
+						ImGui::MergeIconsWithLatestFont(16.f, false);
 
 						contextInitialized = true;
 
@@ -271,6 +283,12 @@ public:
 								ImGui_ImplDX11_NewFrame();
 								ImGui_ImplWin32_NewFrame();
 								ImGui::NewFrame();
+
+								ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.f);
+								ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(43.f / 255.f, 43.f / 255.f, 43.f / 255.f, 100.f / 255.f));
+								ImGui::RenderNotifications();
+								ImGui::PopStyleVar(1);
+								ImGui::PopStyleColor(1);
 
 								if (MC::gameIsFullScreen()) {
 
@@ -387,6 +405,12 @@ public:
 										ImGui_ImplDX12_NewFrame();
 										ImGui_ImplWin32_NewFrame();
 										ImGui::NewFrame();
+
+										ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.f);
+										ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(43.f / 255.f, 43.f / 255.f, 43.f / 255.f, 100.f / 255.f));
+										ImGui::RenderNotifications();
+										ImGui::PopStyleVar(1);
+										ImGui::PopStyleColor(1);
 
 										if (MC::gameIsFullScreen()) {
 

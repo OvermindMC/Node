@@ -13,6 +13,15 @@ auto Module::tick(void) -> void {
 
 		this->wasEnabled = this->isEnabled;
 		this->callEvent<ModuleEvent>(ModuleEvent{ this->isEnabled, false });
+		
+		
+		ImGuiToastType type = ImGuiToastType_Success;
+		ImGuiToast toast(type, 1000);
+
+		toast.set_title(this->name.c_str());
+		toast.set_content(this->isEnabled ? "Enabled" : "Disabled");
+
+		ImGui::InsertNotification(toast);
 
 	};
 

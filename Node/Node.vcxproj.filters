@@ -233,5 +233,17 @@
     <ClInclude Include="Client\Manager\Category\Module\Modules\Render\Nametags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Client\ImGui\Notifications\imgui_notify.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\ImGui\Notifications\font_awesome_5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\ImGui\Notifications\fa_solid_900.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\ImGui\Fonts\tahoma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

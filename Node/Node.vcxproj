@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="Client\Client.h" />
     <ClInclude Include="Client\ImGui\Fonts\ProductSans.h" />
+    <ClInclude Include="Client\ImGui\Fonts\tahoma.h" />
     <ClInclude Include="Client\ImGui\imconfig.h" />
     <ClInclude Include="Client\ImGui\imgui.h" />
     <ClInclude Include="Client\ImGui\imgui_impl_dx11.h" />
@@ -178,6 +179,9 @@
     <ClInclude Include="Client\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Client\ImGui\imstb_textedit.h" />
     <ClInclude Include="Client\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Client\ImGui\Notifications\fa_solid_900.h" />
+    <ClInclude Include="Client\ImGui\Notifications\font_awesome_5.h" />
+    <ClInclude Include="Client\ImGui\Notifications\imgui_notify.h" />
     <ClInclude Include="Client\Manager\Category\Category.h" />
     <ClInclude Include="Client\Manager\Category\Module\Module.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Combat\Hitbox.h" />
