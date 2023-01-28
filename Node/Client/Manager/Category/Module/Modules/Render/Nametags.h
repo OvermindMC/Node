@@ -29,7 +29,7 @@ public:
 
 				forEachEntity([&](Actor* entity, bool isRegular) {
 
-					if (!isRegular || entity->runtimeId == player->runtimeId)
+					if (!isRegular || entity->getEntityTypeId() != ActorType::player || entity->runtimeId == player->runtimeId)
 						return;
 					
 					auto pos = *entity->getPos();
@@ -52,7 +52,7 @@ public:
 					auto len = ctx->getTextLength(font, &text, fontSize, false);
 					auto screenPos = args->ctx->gameToScreenPos(entity->renderPosition.add(0.f, 1.f, 0.f));
 
-					if (screenPos.x <= 0 || screenPos.y <= 0)
+					if (screenPos.x <= 0 && screenPos.y <= 0)
 						return;
 
 					auto textPos = screenPos.sub(Vec2<float>(len / 2.f, 0.f));
