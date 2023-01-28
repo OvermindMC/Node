@@ -253,52 +253,64 @@ public:
 
 					};
 
+					ID3D11RenderTargetView* mainRenderTargetView = nullptr;
 					ID3D11DeviceContext* ppContext = nullptr;
+					ID3D11Texture2D* pBackBuffer = nullptr;
+
 					d3d11Device->GetImmediateContext(&ppContext);
 
-					ID3D11Texture2D* pBackBuffer;
-					ppSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+					if (ppContext) {
 
-					ID3D11RenderTargetView* mainRenderTargetView;
-					d3d11Device->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
+						if (SUCCEEDED(ppSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer))) {
 
-					pBackBuffer->Release();
+							if (SUCCEEDED(d3d11Device->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView))) {
 
-					ImGui_ImplWin32_Init(window);
-					ImGui_ImplDX11_Init(d3d11Device, ppContext);
+								ImGui_ImplWin32_Init(window);
+								ImGui_ImplDX11_Init(d3d11Device, ppContext);
 
-					ImGui_ImplDX11_NewFrame();
-					ImGui_ImplWin32_NewFrame();
-					ImGui::NewFrame();
+								ImGui_ImplDX11_NewFrame();
+								ImGui_ImplWin32_NewFrame();
+								ImGui::NewFrame();
 
-					if (MC::gameIsFullScreen()) {
+								if (MC::gameIsFullScreen()) {
 
-						auto draw = ImGui::GetOverlayDrawList();
+									auto draw = ImGui::GetOverlayDrawList();
 
-						draw->AddCircleFilled(ImGui::GetIO().MousePos, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
-						draw->AddCircleFilled(ImGui::GetIO().MousePosPrev, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
+									draw->AddCircleFilled(ImGui::GetIO().MousePos, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
+									draw->AddCircleFilled(ImGui::GetIO().MousePosPrev, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
 
-					};
+								};
 
-					for (auto [type, category] : this->manager->categories) {
+								for (auto [type, category] : this->manager->categories) {
 
-						for (auto mod : category->modules) {
+									for (auto mod : category->modules) {
 
-							if (mod->isEnabled)
-								mod->callEvent<ImGuiEvent>({ ImGui::GetIO() });
+										if (mod->isEnabled)
+											mod->callEvent<ImGuiEvent>({  });
+
+									};
+
+								};
+
+								ImGui::EndFrame();
+								ImGui::Render();
+
+								ppContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
+								ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
+							};
 
 						};
 
 					};
 
-					ImGui::EndFrame();
-					ImGui::Render();
+					if (pBackBuffer)
+						pBackBuffer->Release();
+					
+					if(mainRenderTargetView)
+						mainRenderTargetView->Release();
 
-					ppContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
-					ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-
-					mainRenderTargetView->Release();
-					d3d11Device->Release();
+					return _this->_Func(ppSwapChain, syncInterval, flags);
 
 				}
 				else if (d3d12Device) {
@@ -390,7 +402,7 @@ public:
 											for (auto mod : category->modules) {
 
 												if (mod->isEnabled)
-													mod->callEvent<ImGuiEvent>({ ImGui::GetIO() });
+													mod->callEvent<ImGuiEvent>({  });
 
 											};
 
@@ -436,9 +448,6 @@ public:
 					};
 
 				};
-
-				/*if (d3d12DescriptorHeapImGuiRender)
-					d3d12DescriptorHeapImGuiRender->Release();*/
 
 				if (allocator)
 					allocator->Release();
