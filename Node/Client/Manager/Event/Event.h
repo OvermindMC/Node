@@ -51,7 +51,7 @@ struct RenderCtxEvent {
 };
 
 struct ImGuiEvent {
-    struct ImGuiIO& io;
+    
 };
 
 struct PacketEvent {
