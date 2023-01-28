@@ -207,6 +207,7 @@
     <ClInclude Include="Client\SDK\Classes\LoopbackPacketSender.h" />
     <ClInclude Include="Client\SDK\Classes\MinecraftGame.h" />
     <ClInclude Include="Client\SDK\Classes\MinecraftUIRenderContext.h" />
+    <ClInclude Include="Client\SDK\Classes\MoveInputHandler.h" />
     <ClInclude Include="Client\SDK\Classes\Packet.h" />
     <ClInclude Include="Client\SDK\Classes\Player.h" />
     <ClInclude Include="Client\SDK\Classes\PlayerInventory.h" />

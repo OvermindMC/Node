@@ -221,5 +221,8 @@
     <ClInclude Include="Client\Manager\Category\Module\Modules\Player\AutoSprint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Client\SDK\Classes\MoveInputHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
