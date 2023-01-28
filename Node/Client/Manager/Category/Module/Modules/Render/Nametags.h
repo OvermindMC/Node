@@ -24,7 +24,6 @@ public:
 			if (player && font) {
 
 				auto I = 0;
-				auto fontSize = 1.f;
 				auto myPos = *player->getPos();
 
 				forEachEntity([&](Actor* entity, bool isRegular) {
@@ -38,6 +37,7 @@ public:
 					if (dist >= 100.f || I >= 20)
 						return;
 
+					auto fontSize = std::fmin(std::fmax(dist, 0.4f), .8f);
 					auto username = Utils::sanitize(entity->username);
 
 					if (username.length() <= 0)
@@ -50,7 +50,7 @@ public:
 
 					text += std::string(" [" + std::to_string(entity->getHealth()) + "]");
 					auto len = ctx->getTextLength(font, &text, fontSize, false);
-					auto screenPos = args->ctx->gameToScreenPos(entity->renderPosition.add(0.f, 1.f, 0.f));
+					auto screenPos = args->ctx->gameToScreenPos(entity->getPos()->add(0.f, 1.f, 0.f));
 
 					if (screenPos.x <= 0 && screenPos.y <= 0)
 						return;
