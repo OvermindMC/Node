@@ -338,8 +338,14 @@ public:
 						if (!contextInitialized) {
 
 							ImGui::CreateContext();
-							auto& io = ImGui::GetIO();
-							io.Fonts->AddFontFromMemoryCompressedTTF(ProductSans_compressed_data, ProductSans_compressed_size, 16.f);
+							ImGuiIO* io = &ImGui::GetIO();
+
+							auto size = sizeof(tahoma);
+
+							ImFontConfig font_cfg;
+							font_cfg.FontDataOwnedByAtlas = false;
+							io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 17.f, &font_cfg);
+							ImGui::MergeIconsWithLatestFont(16.f, false);
 
 						};
 
