@@ -16,7 +16,7 @@ auto Module::tick(void) -> void {
 		
 		
 		ImGuiToastType type = ImGuiToastType_Success;
-		ImGuiToast toast(type, 1000);
+		ImGuiToast toast(type, 2500);
 
 		toast.set_title(this->name.c_str());
 		toast.set_content(this->isEnabled ? "Enabled" : "Disabled");
