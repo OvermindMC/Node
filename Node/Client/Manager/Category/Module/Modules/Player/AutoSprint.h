@@ -9,8 +9,10 @@ public:
 
 			auto gm = args->GM;
 			auto player = gm->player;
+			auto inpHandler = MC::getMoveInputHandler();
 
-			player->setSprinting(true);
+			if(inpHandler && inpHandler->isPlayerMoving())
+				player->setSprinting(true);
 
 		});
 
