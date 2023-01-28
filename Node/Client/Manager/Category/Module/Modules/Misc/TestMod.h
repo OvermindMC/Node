@@ -52,6 +52,9 @@ public:
 
 				screenPos.x -= (len / 2.f);
 
+				if (screenPos.x <= 0 && screenPos.y <= 0)
+					return;
+
 				ctx->fillRectangle(Rect(screenPos.x - 2.f, screenPos.y - fontSize, (screenPos.x + 2.f) + len, screenPos.y + (fontSize * 10.f)), Color(21.f, 21.f, 21.f, .8f));
 				ctx->drawText(font, text, screenPos, Color(), fontSize);
 				ctx->flushText(0.f);
