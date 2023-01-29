@@ -117,7 +117,7 @@ auto Manager::tickNotifications(void) -> void {
 	ImGuiToast toast(notif->type, 2000);
 	
 	toast.set_title(notif->title.c_str());
-	toast.set_content(notif->title.c_str());
+	toast.set_content(notif->contents.c_str());
 
 	ImGui::InsertNotification(toast);
 	this->notifications.erase(this->notifications.begin());
