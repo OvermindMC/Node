@@ -15,7 +15,7 @@ auto Module::tick(void) -> void {
 		this->callEvent<ModuleEvent>(ModuleEvent{ this->isEnabled, false });
 		
 		
-		ImGuiToastType type = ImGuiToastType_Success;
+		ImGuiToastType type = (this->isEnabled ? ImGuiToastType_Success : ImGuiToastType_Error);
 		ImGuiToast toast(type, 2500);
 
 		toast.set_title(this->name.c_str());
