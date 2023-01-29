@@ -24,4 +24,24 @@ public:
 public:
 	template<typename T, typename... TArgs>
 	auto getHook(const char*) -> Hook<T, TArgs...>*;
+private:
+	std::chrono::high_resolution_clock::time_point lastNotif;
+	std::vector<class ImGuiNotif*> notifications;
+public:
+	auto addNotification(std::string title, std::string contents, ImGuiToastType type) -> void;
+	auto tickNotifications(void) -> void;
+};
+
+class ImGuiNotif {
+public:
+	std::string title;
+	std::string contents;
+public:
+	ImGuiToastType type;
+public:
+	ImGuiNotif(std::string t, std::string c, ImGuiToastType tp) {
+		this->type = tp;
+		this->title = t;
+		this->contents = c;
+	}
 };
