@@ -68,6 +68,7 @@ Manager::Manager(Client* c) {
 		for (auto [type, category] : this->categories)
 			category->tick();
 
+		this->tickNotifications();
 		Sleep(1);
 
 	};
@@ -91,5 +92,34 @@ auto Manager::getHook(const char* name) -> Hook<T, TArgs...>* {
 	};
 
 	return res;
+
+};
+
+auto Manager::addNotification(std::string title, std::string contents, ImGuiToastType type) -> void {
+
+	this->notifications.push_back(new ImGuiNotif(title, contents, type));
+
+};
+
+auto Manager::tickNotifications(void) -> void {
+
+	if (!ImGui::GetCurrentContext() || this->notifications.empty())
+		return;
+
+	auto now = std::chrono::high_resolution_clock::now();
+
+	if (now < lastNotif + std::chrono::milliseconds(800))
+		return;
+
+	lastNotif = now;
+
+	auto notif = this->notifications.front();
+	ImGuiToast toast(notif->type, 2000);
+	
+	toast.set_title(notif->title.c_str());
+	toast.set_content(notif->title.c_str());
+
+	ImGui::InsertNotification(toast);
+	this->notifications.erase(this->notifications.begin());
 
 };
