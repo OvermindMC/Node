@@ -6,18 +6,19 @@
 #ifndef IMGUI_NOTIFY
 #define IMGUI_NOTIFY
 
-#pragma once
 #include <vector>
 #include <string>
+#include <wtypes.h>
+
+#include "../imgui.h"
+
 #include "font_awesome_5.h"
 #include "fa_solid_900.h"
-#include "../imgui.h"
-#include <wtypes.h>
 
 #define NOTIFY_MAX_MSG_LENGTH			4096		// Max message content length
 #define NOTIFY_PADDING_X				20.f		// Bottom-left X padding
-#define NOTIFY_PADDING_Y				10.		    // Bottom-left Y padding
-#define NOTIFY_PADDING_MESSAGE_Y		40.f		// Padding Y between each message
+#define NOTIFY_PADDING_Y				20.f		// Bottom-left Y padding
+#define NOTIFY_PADDING_MESSAGE_Y		10.f		// Padding Y between each message
 #define NOTIFY_FADE_IN_OUT_TIME			150			// Fade in and out duration
 #define NOTIFY_DEFAULT_DISMISS			3000		// Auto dismiss after X ms (default, applied only of no data provided in constructors)
 #define NOTIFY_OPACITY					1.0f		// 0-1 Toast opacity
@@ -149,6 +150,8 @@ public:
 		case ImGuiToastType_Info:
 			return ICON_FA_INFO_CIRCLE;
 		}
+
+		return nullptr;
 	}
 
 	NOTIFY_INLINE auto get_content() -> char* { return this->content; };
@@ -281,15 +284,29 @@ namespace ImGui
 
 				bool was_title_rendered = false;
 
+				// If an icon is set
+				if (!NOTIFY_NULL_OR_EMPTY(icon))
+				{
+					//Text(icon); // Render icon text
+					TextColored(text_color, icon);
+					was_title_rendered = true;
+				}
+
 				// If a title is set
 				if (!NOTIFY_NULL_OR_EMPTY(title))
 				{
 					// If a title and an icon is set, we want to render on same line
+					if (!NOTIFY_NULL_OR_EMPTY(icon))
+						SameLine();
+
 					Text(title); // Render title text
 					was_title_rendered = true;
 				}
 				else if (!NOTIFY_NULL_OR_EMPTY(default_title))
 				{
+					if (!NOTIFY_NULL_OR_EMPTY(icon))
+						SameLine();
+
 					Text(default_title); // Render default title text (ImGuiToastType_Success -> "Success", etc...)
 					was_title_rendered = true;
 				}
