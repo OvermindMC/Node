@@ -95,4 +95,30 @@ public:
 	virtual auto getDamageAfterResistanceEffect(class ActorDamageSource*, float) -> float;
 public:
 	virtual auto createAIGoals(void) -> bool;
+public:
+	virtual auto onBorn(Actor*, Actor*) -> void;
+public:
+	virtual auto setItemSlot(enum EquipmentSlot, class ItemStack*) -> bool;
+public:
+	virtual auto setTransitioningSitting(bool) -> void;
+public:
+	virtual auto attackAnimation(Actor*, float) -> void;
+	virtual auto getAttackTime(void) -> __int64;
+public:
+	virtual auto _getWalkTargetValue(Vec3<int>*) -> float;
+public:
+	virtual auto canExistWhenDisallowMob(void) -> bool;
+public:
+	virtual auto useNewAi(void) -> void;
+public:
+	virtual auto ascendLadder(void) -> void;
+	virtual auto ascendBlockByJumping(void) -> void;
+	virtual auto descendBlockByCrouching(void) -> void;
+public:
+	virtual auto dropContainer(void) -> void;
+public:
+	virtual auto initBodyControl(void) -> std::unique_ptr<class BodyControl>;
+public:
+	virtual auto jumpFromGround(class IMobMovementProxy*) -> void;
+	virtual auto jumpFromGround(void) -> void;
 };
