@@ -16,6 +16,8 @@ public:
 	BUILD_ACCESS(this, bool, isFlying, 0x998);
 	BUILD_ACCESS(this, std::string, username, 0x2478);
 public:
+	BUILD_ACCESS(this, float, airSpeed, 0x744);
+public:
 	BUILD_ACCESS(*(uintptr_t**)((uintptr_t)(this) + 0x350), Vec3<float>, motion, 0x18);
 	BUILD_ACCESS(*(uintptr_t**)((uintptr_t)(this) + 0x360), Vec2<float>, bodyRot, 0x0);
 	BUILD_ACCESS(*(uintptr_t**)((uintptr_t)(this) + 0x360), Vec2<float>, bodyRot2, 0x8);
