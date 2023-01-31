@@ -73,4 +73,22 @@ public:
 	virtual auto getToughnessValue(void) -> __int64;
 public:
 	virtual auto hurtArmorSlots(class ActorDamageSource const&, int, std::bitset<4>) -> void;
+	virtual auto setDamagedArmor(enum ArmorSlot, class ItemStack*) -> void;
+	virtual auto sendArmorDamage(std::bitset<4>) -> void;
+	virtual auto sendArmor(std::bitset<4>) -> void;
+public:
+	virtual auto containerChanged(int) -> void;
+	virtual auto updateEquipment(void) -> void;
+	virtual auto clearEquipment(void) -> __int64;
+public:
+	virtual auto getAllArmorID(void) -> std::vector<int>;
+	virtual auto getAllHand(void) -> __int64;
+	virtual auto getAllEquipment(void) -> __int64;
+	virtual auto getArmorTypeHash(void) -> __int64;
+	virtual auto dropEquipmentOnDeath(void) -> __int64;
+	virtual auto dropEquipmentOnDeath(class ActorDamageSource*, int) -> void;
+	virtual auto clearVanishEnchantedItemsOnDeath(void) -> void;
+	virtual auto sendInventory(bool) -> void;
+public:
+	//
 };
