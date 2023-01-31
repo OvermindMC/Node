@@ -8,6 +8,7 @@
 #include <typeindex>
 #include <fstream>
 #include <ostream>
+#include <bitset>
 #include <string>
 #include <vector>
 #include <regex>
