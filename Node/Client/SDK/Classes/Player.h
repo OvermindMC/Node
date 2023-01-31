@@ -90,5 +90,9 @@ public:
 	virtual auto clearVanishEnchantedItemsOnDeath(void) -> void;
 	virtual auto sendInventory(bool) -> void;
 public:
-	//
+	virtual auto getDamageAfterEnchantReduction(class ActorDamageSource*, float) -> float;
+	virtual auto getDamageAfterArmorReduction(class ActorDamageSource*, float) -> float;
+	virtual auto getDamageAfterResistanceEffect(class ActorDamageSource*, float) -> float;
+public:
+	virtual auto createAIGoals(void) -> bool;
 };
