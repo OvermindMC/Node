@@ -3,7 +3,7 @@
 
 class Killaura : public Module {
 public:
-	float range = 12.f;
+	float range = 6.f;
 	bool multi = true;
 public:
 	size_t renderFrame = 0;
