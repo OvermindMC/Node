@@ -30,7 +30,7 @@ public:
 	virtual auto hurtEffects(class ActorDamageSource*, float, bool, bool) -> void;
 public:
 	virtual auto getMeleeWeaponDamageBonus(class Mob*) -> float;
-	virtual auto etMeleeKnockbackBonus(void) -> __int64;
+	virtual auto getMeleeKnockbackBonus(void) -> __int64;
 public:
 	virtual auto travel(float, float, float) -> void;
 	virtual auto applyFinalFriction(float, bool) -> void;
@@ -121,4 +121,34 @@ public:
 public:
 	virtual auto jumpFromGround(class IMobMovementProxy*) -> void;
 	virtual auto jumpFromGround(void) -> void;
+public:
+	virtual auto updateAi(void) -> void;
+	virtual auto newServerStep(void) -> void;
+	virtual auto _serverAiMobStep(void) -> void;
+public:
+	virtual auto dropBags(void) -> void;
+	virtual auto tickDeath(void) -> void;
+	virtual auto updateGliding(void) -> void;
+public:
+	virtual auto _allowAscendingScaffolding(void) -> bool;
+public:
+	virtual auto _getAdjustedAABBForSpawnCheck(AABB<float>&, Vec3<float>&) -> AABB<float>&;
+public:
+	virtual auto prepareRegion(class ChunkSource*) -> void;
+	virtual auto destroyRegion(void) -> void;
+	virtual auto suspendRegion(void) -> void;
+	virtual auto resendAllChunks(void) -> void;
+public:
+	virtual auto _fireWillChangeDimension(void) -> void;
+	virtual auto _fireDimensionChanged(void) -> void;
+public:
+	virtual auto changeDimensionWithCredits(class AutomaticID<Dimension, int>) -> void;
+public:
+	virtual auto tick(class Tick*) -> void;
+public:
+	virtual auto frameUpdate(class FrameUpdateContextBase&) -> void;
+public:
+	virtual auto getTickingOffsets(void) -> std::vector<class ChunkPos>&;
+public:
+	virtual auto moveView(void) -> void;
 };
