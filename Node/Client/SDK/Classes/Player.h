@@ -83,8 +83,8 @@ public:
 	virtual auto descendBlockByCrouching() -> void;
 	virtual auto dropContainer() -> void;
 	virtual auto initBodyControl() -> std::unique_ptr<class BodyControl>;
-	virtual auto jumpFromGround(class IMobMovementProxy) -> void;
 	virtual auto jumpFromGround() -> void;
+	virtual auto jumpFromGround(class IMobMovementProxy) -> void;
 	virtual auto updateAi() -> void;
 	virtual auto newServerStep() -> void;
 	virtual auto _serverAiMobStep() -> void;
