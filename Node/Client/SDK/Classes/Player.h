@@ -14,141 +14,116 @@ private:
 	virtual ~Player(void);
 public:
 	virtual auto knockback(class Actor*, int, float, float, float, float, float) -> void;
-public:
 	virtual auto spawnAnim(void) -> void;
-public:
 	virtual auto setSprinting(bool) -> void;
-public:
 	virtual auto getHurtSound(void) -> enum LevelSoundEvent;
 	virtual auto getDeathSound(void) -> enum LevelSoundEvent;
-public:
 	virtual auto getSpeed(void) -> float;
 	virtual auto setSpeed(float) -> void;
-public:
-	virtual auto getPickRadius(void) -> float;
-public:
+	virtual auto getSprintSpeedIncrease(void) -> float;
 	virtual auto hurtEffects(class ActorDamageSource*, float, bool, bool) -> void;
-public:
 	virtual auto getMeleeWeaponDamageBonus(class Mob*) -> float;
 	virtual auto getMeleeKnockbackBonus(void) -> __int64;
-public:
 	virtual auto travel(float, float, float) -> void;
 	virtual auto applyFinalFriction(float, bool) -> void;
-public:
 	virtual auto aiStep(class IMobMovementProxy*) -> void;
 	virtual auto aiStep(void) -> void;
-public:
 	virtual auto pushActors(void) -> void;
-public:
 	virtual auto lookAt(Actor*, float, float) -> void;
 	virtual auto isLookingAtAnEntity(void) -> bool;
-public:
 	virtual auto checkSpawnRules(bool) -> bool;
 	virtual auto checkSpawnObstruction(void) -> bool;
-public:
 	virtual auto getAttackAnim(float) -> float;
 	virtual auto getItemUseDuration(void) -> __int64;
 	virtual auto getItemUseStartupProgress(void) -> float;
 	virtual auto getItemUseIntervalProgress(void) -> float;
 	virtual auto getItemUseIntervalAxis(void) -> __int64;
 	virtual auto getTimeAlongSwing(void) -> __int64;
-public:
 	virtual auto ate(void) -> void;
-public:
 	virtual auto getMaxHeadXRot(void) -> float;
-public:
 	virtual auto isAlliedTo(class Mob*) -> bool;
-public:
 	virtual auto doHurtTarget(class Actor*, enum ActorDamageCause*) -> bool;
-public:
 	virtual auto canBeControlledByPassenger(void) -> bool;
-public:
 	virtual auto leaveCaravan(void) -> void;
 	virtual auto joinCaravan(class Mob*) -> void;
 	virtual auto hasCaravanTail(void) -> bool;
 	virtual auto getCaravanHead(void) -> class Mob*;
-public:
 	virtual auto getArmorValue(void) -> __int64;
 	virtual auto getArmorCoverPercentage(void) -> float;
 	virtual auto getToughnessValue(void) -> __int64;
-public:
 	virtual auto hurtArmorSlots(class ActorDamageSource const&, int, std::bitset<4>) -> void;
 	virtual auto setDamagedArmor(enum ArmorSlot, class ItemStack*) -> void;
 	virtual auto sendArmorDamage(std::bitset<4>) -> void;
 	virtual auto sendArmor(std::bitset<4>) -> void;
-public:
 	virtual auto containerChanged(int) -> void;
 	virtual auto updateEquipment(void) -> void;
 	virtual auto clearEquipment(void) -> __int64;
-public:
 	virtual auto getAllArmorID(void) -> std::vector<int>;
 	virtual auto getAllHand(void) -> __int64;
 	virtual auto getAllEquipment(void) -> __int64;
 	virtual auto getArmorTypeHash(void) -> __int64;
 	virtual auto dropEquipmentOnDeath(void) -> __int64;
 	virtual auto dropEquipmentOnDeath(class ActorDamageSource*, int) -> void;
-	virtual auto clearVanishEnchantedItemsOnDeath(void) -> void;
+	virtual auto clearVanishEnchantedItemsOnDeath() -> void;
 	virtual auto sendInventory(bool) -> void;
-public:
 	virtual auto getDamageAfterEnchantReduction(class ActorDamageSource*, float) -> float;
 	virtual auto getDamageAfterArmorReduction(class ActorDamageSource*, float) -> float;
 	virtual auto getDamageAfterResistanceEffect(class ActorDamageSource*, float) -> float;
-public:
-	virtual auto createAIGoals(void) -> bool;
-public:
+	virtual auto createAIGoals() -> bool;
 	virtual auto onBorn(Actor*, Actor*) -> void;
-public:
 	virtual auto setItemSlot(enum EquipmentSlot, class ItemStack*) -> bool;
-public:
 	virtual auto setTransitioningSitting(bool) -> void;
-public:
 	virtual auto attackAnimation(Actor*, float) -> void;
-	virtual auto getAttackTime(void) -> __int64;
-public:
-	virtual auto _getWalkTargetValue(Vec3<int>*) -> float;
-public:
-	virtual auto canExistWhenDisallowMob(void) -> bool;
-public:
-	virtual auto useNewAi(void) -> void;
-public:
-	virtual auto ascendLadder(void) -> void;
-	virtual auto ascendBlockByJumping(void) -> void;
-	virtual auto descendBlockByCrouching(void) -> void;
-public:
-	virtual auto dropContainer(void) -> void;
-public:
-	virtual auto initBodyControl(void) -> std::unique_ptr<class BodyControl>;
-public:
-	virtual auto jumpFromGround(class IMobMovementProxy*) -> void;
-	virtual auto jumpFromGround(void) -> void;
-public:
-	virtual auto updateAi(void) -> void;
-	virtual auto newServerStep(void) -> void;
-	virtual auto _serverAiMobStep(void) -> void;
-public:
-	virtual auto dropBags(void) -> void;
-	virtual auto tickDeath(void) -> void;
-	virtual auto updateGliding(void) -> void;
-public:
-	virtual auto _allowAscendingScaffolding(void) -> bool;
-public:
+	virtual auto getAttackTime() -> __int64;
+	virtual auto _getWalkTargetValue(Vec3<int>) -> float;
+	virtual auto canExistWhenDisallowMob() -> bool;
+	virtual auto useNewAi() -> void;
+	virtual auto ascendLadder() -> void;
+	virtual auto ascendBlockByJumping() -> void;
+	virtual auto descendBlockByCrouching() -> void;
+	virtual auto dropContainer() -> void;
+	virtual auto initBodyControl() -> std::unique_ptr<class BodyControl>;
+	virtual auto jumpFromGround(class IMobMovementProxy) -> void;
+	virtual auto jumpFromGround() -> void;
+	virtual auto updateAi() -> void;
+	virtual auto newServerStep() -> void;
+	virtual auto _serverAiMobStep() -> void;
+	virtual auto dropBags() -> void;
+	virtual auto tickDeath() -> void;
+	virtual auto updateGliding() -> void;
+	virtual auto _allowAscendingScaffolding() -> bool;
 	virtual auto _getAdjustedAABBForSpawnCheck(AABB<float>&, Vec3<float>&) -> AABB<float>&;
-public:
 	virtual auto prepareRegion(class ChunkSource*) -> void;
-	virtual auto destroyRegion(void) -> void;
-	virtual auto suspendRegion(void) -> void;
-	virtual auto resendAllChunks(void) -> void;
-public:
-	virtual auto _fireWillChangeDimension(void) -> void;
-	virtual auto _fireDimensionChanged(void) -> void;
-public:
-	virtual auto changeDimensionWithCredits(class AutomaticID<Dimension, int>) -> void;
-public:
-	virtual auto tick(class Tick*) -> void;
-public:
-	virtual auto frameUpdate(class FrameUpdateContextBase&) -> void;
-public:
-	virtual auto getTickingOffsets(void) -> std::vector<class ChunkPos>&;
-public:
-	virtual auto moveView(void) -> void;
+	virtual auto destroyRegion() -> void;
+	virtual auto suspendRegion() -> void;
+	virtual auto resendAllChunks() -> void;
+	virtual auto _fireWillChangeDimension() -> void;
+	virtual auto _fireDimensionChanged() -> void;
+	virtual auto changeDimensionWithCredits(class AutomaticID<class Dimension, int>) -> void;
+	virtual auto tickWorld(class Tick*) -> void;
+	virtual auto frameUpdate(class FrameUpdateContextBase*) -> void;
+	virtual auto getTickingOffsets() -> std::vector<class ChunkPos>&;
+	virtual auto moveView() -> void;
+	virtual auto moveSpawnView(Vec3<float>&, class AutomaticID<class Dimension, int>) -> void;
+	virtual auto setName(std::string&) -> void;
+	virtual auto getTravelledMethod() -> enum TravelMethod;
+	virtual auto checkMovementStats(Vec3<float>) -> void;
+	virtual auto getCurrentStructureFeature() -> class StructureFeature;
+	virtual auto isAutoJumpEnabled() -> bool;
+	virtual auto respawn() -> void;
+	virtual auto resetRot() -> void;
+	virtual auto isInTrialMode() -> bool;
+	virtual auto hasResource(int) -> bool;
+	virtual auto completeUsingItem() -> void;
+	virtual auto startDestroying() -> void;
+	virtual auto stopDestroying() -> void;
+	virtual auto openPortfolio() -> void;
+	virtual auto openBook(int, bool, int, class BlockActor*) -> void;
+	virtual auto openTrading(class ActorUniqueID*, bool) -> void;
+	virtual auto canOpenContainerScreen(void) -> bool;
+	virtual auto openChalkboard(class ChalkboardBlockActor*, bool) -> void;
+	virtual auto openNpcInteractScreen(std::shared_ptr<class INpcDialogueData>) -> void;
+	virtual auto openInventory(void) -> void;
+	virtual auto displayChatMessage(std::string*, std::string*) -> void;
+	virtual auto displayClientMessage(std::string*) -> void;
 };
