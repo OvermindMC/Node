@@ -21,16 +21,9 @@ public:
 			if (args->isEnabled) {
 
 				std::ostringstream o;
-				o << std::hex << player;
+				o << "Player: " << std::hex << player << std::endl;
 
-				Utils::debugOutput("Player: " + o.str());
-
-				player->setFieldOfViewModifier(0.7f);
-
-			}
-			else {
-
-				player->setFieldOfViewModifier(1.f);
+				Utils::debugOutput(o.str());
 
 			};
 
