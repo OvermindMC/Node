@@ -258,8 +258,8 @@ public:
 
 						ImFontConfig font_cfg;
 						font_cfg.FontDataOwnedByAtlas = false;
-						io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 17.f, &font_cfg);
-						ImGui::MergeIconsWithLatestFont(16.f, false);
+						io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 18.f, &font_cfg);
+						ImGui::MergeIconsWithLatestFont(18.f, false);
 
 						contextInitialized = true;
 
@@ -344,8 +344,8 @@ public:
 
 							ImFontConfig font_cfg;
 							font_cfg.FontDataOwnedByAtlas = false;
-							io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 17.f, &font_cfg);
-							ImGui::MergeIconsWithLatestFont(16.f, false);
+							io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 18.f, &font_cfg);
+							ImGui::MergeIconsWithLatestFont(18.f, false);
 
 						};
 
