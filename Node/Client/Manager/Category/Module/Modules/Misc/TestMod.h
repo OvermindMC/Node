@@ -9,28 +9,28 @@ public:
 
 		registerEvent<ModuleEvent>([&](ModuleEvent* args) {
 
+			if (args->isTicking)
+				return;
+
 			auto instance = MC::getClientInstance();
 			auto player = (instance != nullptr ? instance->getPlayer() : nullptr);
 
-			if (args->isTicking && player) {
-
-				//
-
-			};
+			if (!player)
+				return;
 			
-			if (!args->isTicking && args->isEnabled) {
+			if (args->isEnabled) {
 
-				if (player) {
+				std::ostringstream o;
+				o << std::hex << player;
 
-					auto msg = std::string("Test");
-					player->displayClientMessage(&msg);
+				Utils::debugOutput("Player: " + o.str());
 
-					std::ostringstream o;
-					o << std::hex << player;
+				player->setFieldOfViewModifier(0.7f);
 
-					Utils::debugOutput("Player: " + o.str());
+			}
+			else {
 
-				};
+				player->setFieldOfViewModifier(1.f);
 
 			};
 
