@@ -13,10 +13,18 @@ public:
 			if(_this) {
 
 				this->manager->keyMap[key] = isDown;
+				
+				auto instance = MC::getClientInstance();
+				
+				auto mcGame = (instance != nullptr ? instance->getMcGame() : nullptr);
+				auto canToggle = (isDown && mcGame ? mcGame->canUseKeys : false);
 
 				for (auto [type, category] : this->manager->categories) {
 
 					for (auto mod : category->modules) {
+
+						if (canToggle && mod->keybind == key)
+							mod->isEnabled = !mod->isEnabled;
 
 						if (mod->isEnabled)
 							mod->callEvent<KeyEvent>(KeyEvent{ key, isDown, &cancel });
