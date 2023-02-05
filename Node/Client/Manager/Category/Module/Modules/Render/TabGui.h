@@ -15,7 +15,7 @@ public:
 	std::vector<std::pair<CategoryType, Category*>> categories;
 	std::vector<Module*> modules;
 public:
-	TabGui(Manager* mgr) : Module(mgr->categories[CategoryType::RENDER], "TabGui") {
+	TabGui(Manager* mgr) : Module(mgr->categories[CategoryType::RENDER], "TabGui", "Toggle modules via arrow keys", VK_TAB) {
 
 		this->isEnabled = true;
 
