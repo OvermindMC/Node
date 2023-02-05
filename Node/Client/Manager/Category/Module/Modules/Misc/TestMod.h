@@ -9,12 +9,21 @@ public:
 
 		registerEvent<ModuleEvent>([&](ModuleEvent* args) {
 
+			auto instance = MC::getClientInstance();
+			auto player = (instance != nullptr ? instance->getPlayer() : nullptr);
+
+			if (args->isTicking && player) {
+
+				//
+
+			};
+			
 			if (!args->isTicking && args->isEnabled) {
 
-				auto instance = MC::getClientInstance();
-				auto player = (instance != nullptr ? instance->getPlayer() : nullptr);
-
 				if (player) {
+
+					auto msg = std::string("Test");
+					player->displayClientMessage(&msg);
 
 					std::ostringstream o;
 					o << std::hex << player;
