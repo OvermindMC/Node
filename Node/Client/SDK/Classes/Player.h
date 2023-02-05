@@ -1,9 +1,6 @@
 #pragma once
 #include "Actor.h"
 
-template<typename T>
-class NonOwnerPointer;
-
 class Player : public Actor {
 public:
 	auto getSupplies(void) -> PlayerInventory* {
@@ -173,7 +170,7 @@ public:
 	virtual auto sendComplexInventoryTransaction(std::unique_ptr<class ComplexInventoryTransaction*>) -> void;
 	virtual auto sendNetworkPacket(class Packet*) -> void;
 	virtual auto getPlayerEventCoordinator(void) -> class PlayerEventCoordinator*;
-	virtual auto tryGetMoveInputHandler(void) -> MoveInputHandler*;
+	virtual auto tryGetMoveInputHandler(void) -> class MoveInputHandler*;
 	virtual auto getInputMode(void) -> enum InputMode;
 	virtual auto getPlayMode(void) -> enum ClientPlayMode;
 	virtual auto reportMovementTelemetry(enum MovementEventType) -> void;
@@ -184,7 +181,7 @@ public:
 	virtual auto onMovePlayerPacketNormal(Vec3<float>*, Vec2<float>*, float) -> void;
 	virtual auto _createChunkSource(class ChunkSource&) -> std::shared_ptr<class ChunkViewSource>;
 	virtual auto setAbilities(class LayeredAbilities*) -> void;
-	virtual auto getEditorPlayer(void) -> class NonOwnerPointer<class IEditorPlayer>;
+	virtual auto getEditorPlayer(void) -> __int64;
 	virtual auto destroyEditorPlayer(void) -> void;
 	virtual auto _getSpawnChunkLimit(void) -> __int64;
 	virtual auto _updateChunkPublisherView(Vec3<float>*, float) -> void;
