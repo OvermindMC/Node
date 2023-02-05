@@ -1,6 +1,9 @@
 #pragma once
 #include "Actor.h"
 
+template<typename T>
+class NonOwnerPointer;
+
 class Player : public Actor {
 public:
 	auto getSupplies(void) -> PlayerInventory* {
@@ -152,5 +155,37 @@ public:
 	virtual auto addExperience(int) -> void;
 	virtual auto addLevels(int) -> void;
 	virtual auto setContainerData(class IContainerManager*, int, int) -> void;
-	virtual auto slotChanged(class  IContainerManager*, class Container*, int, class ItemStack*, class ItemStack*, bool) -> void;
+	virtual auto slotChanged(class IContainerManager*, class Container*, int, class ItemStack*, class ItemStack*, bool) -> void;
+	virtual auto inventoryChanged(class Container*, int, class ItemStack*, class ItemStack*, bool) -> void;
+	virtual auto refreshContainer(class IContainerManager*) -> void;
+	virtual auto deleteContainerManager(void) -> void;
+	virtual auto setFieldOfViewModifier(float) -> void;
+	virtual auto isActorRelevant(class Actor*) -> void;
+	virtual auto isTeacher(void) -> bool;
+	virtual auto onSuspension(void) -> void;
+	virtual auto onLinkedSlotsChanged(void) -> void;
+	virtual auto startCooldown(class Item*, bool) -> void;
+	virtual auto getItemCooldownLeft(unsigned __int64) -> __int64;
+	virtual auto getItemCooldownLeft(class HashedString*) -> __int64;
+	virtual auto getMaxItemCooldownLeft(void) -> __int64;
+	virtual auto isItemOnCooldown(class HashedString*) -> bool;
+	virtual auto sendInventoryTransaction(class InventoryTransaction*) -> void;
+	virtual auto sendComplexInventoryTransaction(std::unique_ptr<class ComplexInventoryTransaction*>) -> void;
+	virtual auto sendNetworkPacket(class Packet*) -> void;
+	virtual auto getPlayerEventCoordinator(void) -> class PlayerEventCoordinator*;
+	virtual auto tryGetMoveInputHandler(void) -> MoveInputHandler*;
+	virtual auto getInputMode(void) -> enum InputMode;
+	virtual auto getPlayMode(void) -> enum ClientPlayMode;
+	virtual auto reportMovementTelemetry(enum MovementEventType) -> void;
+	virtual auto isSimulated(void) -> bool;
+	virtual auto getXuid(void) -> std::string&;
+	virtual auto getMovementSettings(void) -> class PlayerMovementSettings*;
+	virtual auto addSavedChunk(class ChunkPos*) -> void;
+	virtual auto onMovePlayerPacketNormal(Vec3<float>*, Vec2<float>*, float) -> void;
+	virtual auto _createChunkSource(class ChunkSource&) -> std::shared_ptr<class ChunkViewSource>;
+	virtual auto setAbilities(class LayeredAbilities*) -> void;
+	virtual auto getEditorPlayer(void) -> class NonOwnerPointer<class IEditorPlayer>;
+	virtual auto destroyEditorPlayer(void) -> void;
+	virtual auto _getSpawnChunkLimit(void) -> __int64;
+	virtual auto _updateChunkPublisherView(Vec3<float>*, float) -> void;
 };
