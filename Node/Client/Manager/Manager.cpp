@@ -10,6 +10,7 @@
 #include "Category/Module/Modules/Combat/Killaura.h"
 #include "Category/Module/Modules/Combat/Hitbox.h"
 
+#include "Category/Module/Modules/Player/Zoom.h"
 #include "Category/Module/Modules/Player/FreeLook.h"
 #include "Category/Module/Modules/Player/AutoSprint.h"
 
@@ -47,6 +48,7 @@ Manager::Manager(Client* c) {
 	new Killaura(this);
 	new Hitbox(this);
 
+	new Zoom(this);
 	new FreeLook(this);
 	new AutoSprint(this);
 	
