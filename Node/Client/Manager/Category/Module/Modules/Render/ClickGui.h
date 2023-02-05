@@ -7,7 +7,7 @@ public:
 public:
 	Module* moduleConfig = nullptr;
 public:
-	ClickGui(Manager* mgr) : Module(mgr->categories[CategoryType::RENDER], "ClickGui", "Interact with Modules via Mouse", VK_INSERT) {
+	ClickGui(Manager* mgr) : Module(mgr->categories[CategoryType::RENDER], "ClickGui", "Interact with modules via mouse", VK_INSERT) {
 
 		registerEvent<ImGuiEvent>([&](ImGuiEvent* args) {
 
