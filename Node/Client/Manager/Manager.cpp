@@ -5,6 +5,7 @@
 /* Module Includes */
 
 #include "Category/Module/Modules/Render/TabGui.h"
+#include "Category/Module/Modules/Render/ClickGui.h"
 #include "Category/Module/Modules/Render/Nametags.h"
 
 #include "Category/Module/Modules/Combat/Killaura.h"
@@ -43,6 +44,7 @@ Manager::Manager(Client* c) {
 	};
 
 	new TabGui(this);
+	new ClickGui(this);
 	new Nametags(this);
 	
 	new Killaura(this);
