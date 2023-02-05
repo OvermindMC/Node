@@ -3,22 +3,19 @@
 
 class ClickGui : public Module {
 public:
-	bool setWindow = false;
+	int currWindow = 0;
 public:
-	int currCategory = 0;
+	Module* moduleConfig = nullptr;
 public:
 	ClickGui(Manager* mgr) : Module(mgr->categories[CategoryType::RENDER], "ClickGui", "Interact with Modules via Mouse", VK_INSERT) {
 
 		registerEvent<ImGuiEvent>([&](ImGuiEvent* args) {
 
-			if (!setWindow) {
-
-				auto displaySize = ImGui::GetIO().DisplaySize;
-
-				ImGui::SetNextWindowSize(ImVec2(displaySize.x / 2.f, displaySize.y / 2.f));
-				setWindow = true;
-
-			};
+			ImVec2 displaySize = ImGui::GetIO().DisplaySize;
+			ImVec2 windowSize = ImVec2(displaySize.x / 2, displaySize.y / 2);
+			ImGui::SetNextWindowPos(ImVec2((displaySize.x - windowSize.x) / 2, (displaySize.y - windowSize.y) / 2));
+			ImGui::SetNextWindowSize(windowSize);
+			ImGui::SetNextWindowContentSize(windowSize);
 			
 			auto mgr = this->category->manager;
 			auto categories = std::vector<std::string>();
@@ -27,53 +24,135 @@ public:
 				categories.push_back(category->getName());
 
 			ImVec4 window_color = ImGui::GetStyle().Colors[ImGuiCol_WindowBg];
-			window_color.w = 0.7f;
+			window_color.w = 0.6f;
 
 			ImGui::PushStyleColor(ImGuiCol_WindowBg, window_color);
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowTitleAlign, ImVec2(0.5f, 0.5f));
 
-			if (ImGui::Begin("ClickGui", NULL, ImGuiWindowFlags_NoCollapse || ImGuiWindowFlags_NoTitleBar)) {
+			if (ImGui::Begin(std::string(std::string(ICON_FA_ATOM) + " " + mgr->client->name).c_str(), NULL, ImGuiWindowFlags_NoCollapse)) {
+				
+				auto font = *ImGui::GetFont();
+				font.Scale = 1.4f;
 
-				if (ImGui::BeginChild("Categories", ImVec2(120.f, 0.f), true, ImGuiWindowFlags_NoScrollWithMouse)) {
+				ImGui::PushFont(&font);
+				ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.f);
+				ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10.f, 10.f));
+				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.23, 0.78f, 0.51, 1.0f));
 
-					for (auto I = 0; I < categories.size(); I++) {
+				/* Navbar Contents */
 
-						auto c = categories[I];
+				if (ImGui::Button("Modules")) {
 
-						if (ImGui::Button(c.c_str(), ImVec2(100.f, 30.f))) {
+					currWindow = 0;
 
-							currCategory = (I + 1);
+				}; ImGui::SameLine();
 
-						};
+				if (ImGui::Button("Friends")) {
 
-					};
+					currWindow = 1;
+
+				}; ImGui::SameLine();
+
+				if (ImGui::Button("Settings")) {
+
+					currWindow = 2;
+
+				}; ImGui::SameLine();
+				
+				ImGui::SetCursorPosX(ImGui::GetWindowWidth() - (ImGui::CalcTextSize("X").x * 4.f) - ImGui::GetStyle().WindowPadding.x);
+				
+				if(ImGui::Button("X"))
+					this->isEnabled = false;
+
+				/* End Of Navbar Contents */
+
+				/* Windows */
+
+				if (ImGui::BeginChild("Module Configs", ImVec2(120.f, 0.f), true)) {
+
+					if(moduleConfig)
+						ImGui::Text(moduleConfig->name.c_str());
 
 					ImGui::EndChild();
 
 				}; ImGui::SameLine();
 
-				if (ImGui::BeginChild("Modules", ImVec2(ImGui::GetWindowWidth() - 110.f, 0.f), true, ImGuiWindowFlags_NoScrollWithMouse)) {
+				if (ImGui::BeginChild("Current Window", ImVec2(ImGui::GetWindowWidth() - 170.f, 0.f), true)) {
 
-					auto category = mgr->categories.find(reinterpret_cast<CategoryType&>(currCategory));
-					auto modules = (category != mgr->categories.end() ? category->second->modules : std::vector<Module*>());
+					if (currWindow == 0) {
 
-					for (auto mod : modules) {
+						auto modules = std::vector<Module*>();
 
-						if (ImGui::Button(mod->name.c_str(), ImVec2(ImGui::GetWindowWidth() - 50.f, 30.f))) {
+						for (auto [type, category] : mgr->categories) {
 
-							mod->isEnabled = !mod->isEnabled;
+							for (auto mod : category->modules)
+								modules.push_back(mod);
 
 						};
 
-					};
+						auto font = *ImGui::GetFont();
+						font.Scale = 1.f;
 
+						ImGui::PushFont(&font);
+
+						auto I = 0;
+						for (auto mod : modules) {
+
+							I++;
+
+							if (ImGui::BeginChild(std::string("Card-" + mod->name).c_str(), ImVec2((ImGui::GetWindowWidth() - 30.f) / 3.f, 100.f), true)) {
+
+								ImGui::Text(std::string(std::string(ICON_FA_STAR) + " " + mod->name).c_str());
+
+								ImGui::Spacing();
+								ImGui::Spacing();
+								
+								if (ImGui::Button(ICON_FA_COG))
+									moduleConfig = mod;
+
+								ImGui::SameLine();
+
+								bool isEnabled = mod->isEnabled;
+
+								if(!isEnabled)
+									ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.89, 0.31f, 0.23, 1.0f));
+								
+								if (ImGui::Button(mod->isEnabled ? "Enabled" : "Disabled"))
+									mod->isEnabled = !mod->isEnabled;
+
+								if (!isEnabled)
+									ImGui::PopStyleColor();
+								
+								ImGui::EndChild();
+
+							};
+							
+							if (I == 3)
+								I = 0;
+							else
+								ImGui::SameLine();
+
+						};
+
+						ImGui::PopFont();
+
+					};
+					
 					ImGui::EndChild();
 
 				};
-				
+
+				/* End Of Windows */
+
+				ImGui::PopStyleColor();
+				ImGui::PopStyleVar();
+				ImGui::PopStyleVar();
+				ImGui::PopFont();
 				ImGui::End();
 
 			};
 
+			ImGui::PopStyleVar();
 			ImGui::PopStyleColor();
 
 		});
