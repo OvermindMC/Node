@@ -1,8 +1,12 @@
 #include "Module.h"
 
-Module::Module(Category* c, std::string n) {
+Module::Module(Category* c, std::string n, std::string d, uint64_t k) {
 	this->category = c;
+	
 	this->name = n;
+	this->description = d;
+
+	this->keybind = k;
 
 	this->category->modules.push_back(this);
 };
