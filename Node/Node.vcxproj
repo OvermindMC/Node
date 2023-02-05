@@ -190,6 +190,7 @@
     <ClInclude Include="Client\Manager\Category\Module\Modules\Misc\Uninject.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Player\AutoSprint.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Player\FreeLook.h" />
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Player\Zoom.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Render\Nametags.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Render\TabGui.h" />
     <ClInclude Include="Client\Manager\Event\Event.h" />
