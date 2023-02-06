@@ -10,6 +10,12 @@ public:
 public:
 	Killaura(Manager* mgr) : Module(mgr->categories[CategoryType::COMBAT], "Killaura") {
 
+		registerEvent<ClickGuiModConfigEvent>([&](auto) {
+
+			ImGui::SliderFloat("Range", &range, 2.f, 12.f, "%.3f");
+
+		});
+
 		registerEvent<RenderCtxEvent>([&](RenderCtxEvent* args) {
 
 			this->renderFrame++;
