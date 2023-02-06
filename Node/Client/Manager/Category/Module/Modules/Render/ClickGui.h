@@ -9,13 +9,64 @@ public:
 public:
 	ClickGui(Manager* mgr) : Module(mgr->categories[CategoryType::RENDER], "ClickGui", "Interact with modules via mouse", VK_INSERT) {
 
+		registerEvent<ModuleEvent>([&](ModuleEvent* args) {
+
+			if(args->isTicking)
+				return;
+
+			auto instance = MC::getClientInstance();
+			
+			if(args->isEnabled) {
+
+				instance->releaseMouse();
+
+			}
+			else {
+
+				auto currScreenName = instance->getTopScreenName();
+
+				if (currScreenName.rfind("hud_screen") != std::string::npos)
+					instance->grabMouse();
+
+			};
+
+		});
+
+		registerEvent<MouseEvent>([&](MouseEvent* args) {
+
+			*args->cancel = true;
+								  
+		});
+
+		registerEvent<KeyEvent>([&](KeyEvent* args) {
+
+			auto key = args->key;
+			auto isDown = args->isDown;
+
+			if (key == VK_ESCAPE && isDown)
+				this->isEnabled = false;
+
+			*args->cancel = true;
+
+		});
+		
 		registerEvent<ImGuiEvent>([&](ImGuiEvent* args) {
+
+			auto instance = MC::getClientInstance();
+			auto currScreenName = instance->getTopScreenName();
+
+			if (currScreenName.rfind("hud_screen") == std::string::npos) {
+
+				this->isEnabled = false;
+				return;
+
+			};
 
 			ImVec2 displaySize = ImGui::GetIO().DisplaySize;
 			ImVec2 windowSize = ImVec2(displaySize.x / 2, displaySize.y / 2);
 			ImGui::SetNextWindowPos(ImVec2((displaySize.x - windowSize.x) / 2, (displaySize.y - windowSize.y) / 2));
 			ImGui::SetNextWindowSize(windowSize);
-			ImGui::SetNextWindowContentSize(windowSize);
+			ImGui::SetNextWindowContentSize(ImVec2(windowSize.x, windowSize.y + 100.f));
 			
 			auto mgr = this->category->manager;
 			auto categories = std::vector<std::string>();
@@ -36,7 +87,7 @@ public:
 
 				ImGui::PushFont(&font);
 				ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.f);
-				ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10.f, 10.f));
+				ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(6.f, 6.f));
 				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.23, 0.78f, 0.51, 1.0f));
 
 				/* Navbar Contents */
@@ -70,8 +121,15 @@ public:
 
 				if (ImGui::BeginChild("Module Configs", ImVec2(120.f, 0.f), true)) {
 
-					if(moduleConfig)
-						ImGui::Text(moduleConfig->name.c_str());
+					auto font = *ImGui::GetFont();
+					font.Scale = .6f;
+
+					ImGui::PushFont(&font);
+					
+					if (moduleConfig)
+						moduleConfig->callEvent<ClickGuiModConfigEvent>(ClickGuiModConfigEvent{});
+
+					ImGui::PopFont();
 
 					ImGui::EndChild();
 
@@ -91,7 +149,7 @@ public:
 						};
 
 						auto font = *ImGui::GetFont();
-						font.Scale = 1.f;
+						font.Scale = .8f;
 
 						ImGui::PushFont(&font);
 
