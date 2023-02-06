@@ -54,6 +54,10 @@ struct ImGuiEvent {
     
 };
 
+struct ClickGuiModConfigEvent {
+    //
+};
+
 struct PacketEvent {
     bool* cancel;
     class Packet* packet;
