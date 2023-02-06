@@ -39,4 +39,29 @@ public:
 	auto getbadrefdef(void) -> glmatrixf* {
 		return (glmatrixf*)((uintptr_t)(this) + 0x2F0);
 	};
+public:
+	auto grabMouse(void) -> void {
+
+		return Utils::CallVFunc<297, void>(this);
+
+	};
+	auto releaseMouse(void) -> void {
+
+		return Utils::CallVFunc<298, void>(this);
+
+	};
+	auto refocusMouse(void) -> void {
+
+		return Utils::CallVFunc<299, void>(this);
+
+	};
+public:
+	auto getTopScreenName(void) -> std::string {
+
+		std::string out;
+		Utils::CallVFunc<132, void, std::string*>(this, &out);
+
+		return out;
+
+	};
 };
