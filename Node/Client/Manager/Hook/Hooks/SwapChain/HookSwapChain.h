@@ -252,13 +252,7 @@ public:
 					if (!contextInitialized) {
 
 						ImGui::CreateContext();
-						ImGuiIO* io = &ImGui::GetIO();
-
-						auto size = sizeof(tahoma);
-
-						ImFontConfig font_cfg;
-						font_cfg.FontDataOwnedByAtlas = false;
-						io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 18.f, &font_cfg);
+						ImGui::GetIO().Fonts->AddFontFromMemoryCompressedTTF(ProductSans_compressed_data, ProductSans_compressed_size, 18.f);
 						ImGui::MergeIconsWithLatestFont(18.f, false);
 
 						contextInitialized = true;
@@ -338,13 +332,7 @@ public:
 						if (!contextInitialized) {
 
 							ImGui::CreateContext();
-							ImGuiIO* io = &ImGui::GetIO();
-
-							auto size = sizeof(tahoma);
-
-							ImFontConfig font_cfg;
-							font_cfg.FontDataOwnedByAtlas = false;
-							io->Fonts->AddFontFromMemoryTTF((void*)tahoma, size, 18.f, &font_cfg);
+							ImGui::GetIO().Fonts->AddFontFromMemoryCompressedTTF(ProductSans_compressed_data, ProductSans_compressed_size, 20.f);
 							ImGui::MergeIconsWithLatestFont(18.f, false);
 
 						};

@@ -83,10 +83,10 @@ public:
 			if (ImGui::Begin(std::string(std::string(ICON_FA_ATOM) + " " + mgr->client->name).c_str(), NULL, ImGuiWindowFlags_NoCollapse)) {
 				
 				auto font = *ImGui::GetFont();
-				font.Scale = 1.4f;
+				font.Scale = 1.f;
 
 				ImGui::PushFont(&font);
-				ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.f);
+				ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 10.f);
 				ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(6.f, 6.f));
 				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.23, 0.78f, 0.51, 1.0f));
 
@@ -112,7 +112,7 @@ public:
 				
 				ImGui::SetCursorPosX(ImGui::GetWindowWidth() - (ImGui::CalcTextSize("X").x * 4.f) - ImGui::GetStyle().WindowPadding.x);
 				
-				if(ImGui::Button("X"))
+				if(ImGui::Button(" X "))
 					this->isEnabled = false;
 
 				/* End Of Navbar Contents */
@@ -149,7 +149,7 @@ public:
 						};
 
 						auto font = *ImGui::GetFont();
-						font.Scale = .8f;
+						font.Scale = 1.f;
 
 						ImGui::PushFont(&font);
 
