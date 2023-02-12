@@ -62,6 +62,8 @@ public:
 
 			};
 
+			instance->releaseMouse();
+
 			ImVec2 displaySize = ImGui::GetIO().DisplaySize;
 			ImVec2 windowSize = ImVec2(displaySize.x / 2, displaySize.y / 2);
 			ImGui::SetNextWindowPos(ImVec2((displaySize.x - windowSize.x) / 2, (displaySize.y - windowSize.y) / 2));
