@@ -46,10 +46,10 @@ Manager::Manager(Client* c) {
 	new Nametags(this);
 	
 	/*new Killaura(this);
-	new Hitbox(this);
+	new Hitbox(this);*/
 
 	new Zoom(this);
-	new AutoSprint(this);*/
+	new AutoSprint(this);
 	
 	new Uninject(this);
 	/*new TestMod(this);*/
