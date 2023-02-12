@@ -9,7 +9,7 @@
 class ClientInstance {
 public:
 	auto getPlayer(void) -> Player* {
-		return Utils::CallVFunc<24, Player*>(this);
+		return Utils::CallVFunc<25, Player*>(this);
 	};
 public:
 	auto getGuiData(void) -> GuiData* {
