@@ -59,7 +59,7 @@ public:
 	auto getTopScreenName(void) -> std::string {
 
 		std::string out;
-		Utils::CallVFunc<132, void, std::string*>(this, &out);
+		Utils::CallVFunc<134, void, std::string*>(this, &out);
 
 		return out;
 
