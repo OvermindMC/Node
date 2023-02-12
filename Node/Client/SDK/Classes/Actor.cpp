@@ -2,7 +2,7 @@
 
 auto Actor::getLevel(void) -> Level* {
 
-	return *(Level**)((uintptr_t)(this) + 0x310);
+	return *(Level**)((uintptr_t)(this) + 0x208);
 
 };
 
