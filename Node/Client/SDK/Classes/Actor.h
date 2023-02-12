@@ -10,17 +10,8 @@ class AutomaticID;
 
 class Actor {
 public:
-	BUILD_ACCESS(this, Vec3<float>, renderPosition, 0x140);
-	BUILD_ACCESS(this, bool, isOnGround, 0x188);
 	BUILD_ACCESS(this, uint64_t, runtimeId, 0x418);
-	BUILD_ACCESS(this, bool, isFlying, 0x998);
-	BUILD_ACCESS(this, std::string, username, 0x2478);
 public:
-	BUILD_ACCESS(this, float, airSpeed, 0x744);
-public:
-	BUILD_ACCESS(*(uintptr_t**)((uintptr_t)(this) + 0x350), Vec3<float>, motion, 0x18);
-	BUILD_ACCESS(*(uintptr_t**)((uintptr_t)(this) + 0x360), Vec2<float>, bodyRot, 0x0);
-	BUILD_ACCESS(*(uintptr_t**)((uintptr_t)(this) + 0x360), Vec2<float>, bodyRot2, 0x8);
 	BUILD_ACCESS(*(uintptr_t**)((uintptr_t)(this) + 0x358), AABB<float>, boundingBox, 0x0);
 public:
 	auto getLevel(void) -> Level*;
