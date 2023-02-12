@@ -221,14 +221,14 @@ public:
 				
 				auto _this = this->manager->getHook<HRESULT, IDXGISwapChain3*, UINT, UINT>("SwapChainPresent");
 
-				auto instance = MC::getClientInstance();
+				/*auto instance = MC::getClientInstance();
 				auto guidata = instance ? instance->getGuiData() : nullptr;
 				
 				if(!guidata)
 					return _this->_Func(ppSwapChain, syncInterval, flags);
 
 				if (ImGui::GetCurrentContext())
-					ImGui::GetIO().DisplaySize = ImVec2(guidata->screenResC.x, guidata->screenResC.y);
+					ImGui::GetIO().DisplaySize = ImVec2(guidata->screenResC.x, guidata->screenResC.y);*/
 				
 				auto window = (HWND)FindWindowA(nullptr, (LPCSTR)"Minecraft");
 				
@@ -284,14 +284,14 @@ public:
 								ImGui::PopStyleVar(1);
 								ImGui::PopStyleColor(1);
 
-								if (MC::gameIsFullScreen()) {
+								/*if (MC::gameIsFullScreen()) {
 
 									auto draw = ImGui::GetOverlayDrawList();
 
 									draw->AddCircleFilled(ImGui::GetIO().MousePos, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
 									draw->AddCircleFilled(ImGui::GetIO().MousePosPrev, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
 
-								};
+								};*/
 
 								for (auto [type, category] : this->manager->categories) {
 
@@ -406,14 +406,14 @@ public:
 										ImGui::PopStyleVar(1);
 										ImGui::PopStyleColor(1);
 
-										if (MC::gameIsFullScreen()) {
+										/*if (MC::gameIsFullScreen()) {
 
 											auto draw = ImGui::GetOverlayDrawList();
 
 											draw->AddCircleFilled(ImGui::GetIO().MousePos, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
 											draw->AddCircleFilled(ImGui::GetIO().MousePosPrev, 2.f, ImColor(255.f, 255.f, 255.f, 1.f), 30);
 
-										};
+										};*/
 
 										for (auto [type, category] : this->manager->categories) {
 
