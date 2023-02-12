@@ -52,14 +52,14 @@ Manager::Manager(Client* c) {
 	new AutoSprint(this);
 	
 	new Uninject(this);
-	/*new TestMod(this);*/
+	new TestMod(this);
 
 	MH_Initialize();
 
 	new HookSwapChain(this);
 	new HookGameMode(this);
-	/*new HookNetwork(this);
-	new HookEntity(this);*/
+	/*new HookNetwork(this);*/
+	new HookEntity(this);
 	new MouseHook(this);
 	new HookKey(this);
 
