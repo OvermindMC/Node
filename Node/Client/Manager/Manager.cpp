@@ -41,15 +41,14 @@ Manager::Manager(Client* c) {
 
 	};
 
-	/*new TabGui(this);*/
+	new TabGui(this);
 	new ClickGui(this);
-	/*new Nametags(this);
+	new Nametags(this);
 	
-	new Killaura(this);
+	/*new Killaura(this);
 	new Hitbox(this);
 
 	new Zoom(this);
-	new FreeLook(this);
 	new AutoSprint(this);*/
 	
 	new Uninject(this);
