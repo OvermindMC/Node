@@ -137,9 +137,6 @@
     <ClInclude Include="Client\Manager\Hook\Hooks\Network\HookNetwork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Client\Manager\Hook\Hooks\RenderContext\HookRenderCtx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Client\Manager\Hook\Hook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -204,9 +201,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Client\Manager\Hook\Hooks\GameMode\HookGameMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\Manager\Category\Module\Modules\Player\FreeLook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Client\Manager\Hook\Hooks\SwapChain\HookSwapChain.h">

@@ -189,7 +189,6 @@
     <ClInclude Include="Client\Manager\Category\Module\Modules\Misc\TestMod.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Misc\Uninject.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Player\AutoSprint.h" />
-    <ClInclude Include="Client\Manager\Category\Module\Modules\Player\FreeLook.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Player\Zoom.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Render\ClickGui.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Render\Nametags.h" />
@@ -201,7 +200,6 @@
     <ClInclude Include="Client\Manager\Hook\Hooks\Key\HookKey.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\Mouse\HookMouse.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\Network\HookNetwork.h" />
-    <ClInclude Include="Client\Manager\Hook\Hooks\RenderContext\HookRenderCtx.h" />
     <ClInclude Include="Client\Manager\Hook\Hooks\SwapChain\HookSwapChain.h" />
     <ClInclude Include="Client\Manager\Manager.h" />
     <ClInclude Include="Client\Mem\Mem.h" />

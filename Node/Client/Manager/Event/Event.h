@@ -46,10 +46,6 @@ struct MouseEvent {
     bool* cancel;
 };
 
-struct RenderCtxEvent {
-    class MinecraftUIRenderContext* ctx;
-};
-
 struct ImGuiEvent {
     
 };
@@ -65,8 +61,4 @@ struct PacketEvent {
 
 struct GameModeTickEvent {
     class GameMode* GM;
-};
-
-struct InterpolatorTickEvent {
-    class Actor* entity;
 };
