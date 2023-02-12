@@ -42,17 +42,17 @@ public:
 public:
 	auto grabMouse(void) -> void {
 
-		return Utils::CallVFunc<297, void>(this);
+		return Utils::CallVFunc<303, void>(this);
 
 	};
 	auto releaseMouse(void) -> void {
 
-		return Utils::CallVFunc<298, void>(this);
+		return Utils::CallVFunc<304, void>(this);
 
 	};
 	auto refocusMouse(void) -> void {
 
-		return Utils::CallVFunc<299, void>(this);
+		return Utils::CallVFunc<305, void>(this);
 
 	};
 public:
