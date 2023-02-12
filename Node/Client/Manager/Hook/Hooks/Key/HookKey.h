@@ -15,9 +15,9 @@ public:
 				this->manager->keyMap[key] = isDown;
 				
 				auto instance = MC::getClientInstance();
-				
-				auto mcGame = (instance != nullptr ? instance->getMcGame() : nullptr);
-				auto canToggle = (isDown && mcGame ? mcGame->canUseKeys : false);
+				auto currScreen = instance->getTopScreenName();
+
+				auto canToggle = (isDown && currScreen.rfind("hud_screen") != std::string::npos);
 
 				for (auto [type, category] : this->manager->categories) {
 
