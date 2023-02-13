@@ -7,17 +7,17 @@ public:
 		if (this->serverIp.length() <= 0)
 			return "";
 
-		if ((uintptr_t*)((uintptr_t)(this) + 0x458) != nullptr)
-			if (Utils::isValidDomain((char*)((uintptr_t)(this) + 0x458)))
-				return std::string((const char*)((uintptr_t)(this) + 0x458));
-			else if ((char**)((uintptr_t)(this) + 0x458) != nullptr)
-				return std::string((*(char**)((uintptr_t)(this) + 0x458)));
+		if ((uintptr_t*)((uintptr_t)(this) + 0x430) != nullptr)
+			if (Utils::isValidDomain((char*)((uintptr_t)(this) + 0x430)))
+				return std::string((const char*)((uintptr_t)(this) + 0x430));
+			else if ((char**)((uintptr_t)(this) + 0x430) != nullptr)
+				return std::string((*(char**)((uintptr_t)(this) + 0x430)));
 
 		return "";
 	};
 public:
-	BUILD_ACCESS(this, std::string, serverName, 0x530);
-	BUILD_ACCESS(this, std::string, serverIp, 0x438);
+	BUILD_ACCESS(this, std::string, serverName, 0x4E0);
+	BUILD_ACCESS(this, std::string, serverIp, 0x410);
 public:
 	AS_FIELD(std::string, serverStaticIp, getServerStaticIp);
 private:
@@ -53,7 +53,7 @@ public:
 
 class NetworkHandler {
 public:
-	BUILD_ACCESS(this, Raknet*, raknet, 0x50);
+	BUILD_ACCESS(this, Raknet*, raknet, 0x58);
 };
 
 class LoopbackPacketSender {
